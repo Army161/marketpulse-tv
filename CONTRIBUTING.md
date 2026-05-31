@@ -43,9 +43,9 @@ npm run typecheck --workspaces   # type-check backend + Fire TV + shared
 npm run dev:api                  # run backend locally (http://localhost:3000)
 ```
 
-Roku packaging (manifest must sit at the zip root):
+Roku packaging (manifest must sit at the zip root; excludes dev/tooling files):
 ```bash
-python3 -c "import os,zipfile; z=zipfile.ZipFile('dist/marketpulse-roku.zip','w',zipfile.ZIP_DEFLATED); [z.write(os.path.join(r,f), os.path.relpath(os.path.join(r,f),'apps/roku').replace(os.sep,'/')) for r,d,fs in os.walk('apps/roku') for f in fs]; z.close()"
+python3 scripts/package-roku.py
 ```
 
 ## Don't regress these (hard-won lessons — see HANDOFF.md for detail)

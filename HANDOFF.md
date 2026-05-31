@@ -82,8 +82,8 @@ assessment in `SECURITY.md`.
 npm run typecheck --workspaces
 # Backend dev (from repo root)
 npm run dev:api
-# Package Roku channel (manifest at zip root!)
-python3 -c "import os,zipfile; z=zipfile.ZipFile('dist/marketpulse-roku.zip','w',zipfile.ZIP_DEFLATED); [z.write(os.path.join(r,f), os.path.relpath(os.path.join(r,f),'apps/roku').replace(os.sep,'/')) for r,d,fs in os.walk('apps/roku') for f in fs]; z.close()"
+# Package Roku channel (manifest at zip root; excludes bsconfig/out/ artifacts)
+python3 scripts/package-roku.py
 # Deploy backend (needs VERCEL_TOKEN env)
 vercel --prod --yes
 ```
