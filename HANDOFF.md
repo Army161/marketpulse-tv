@@ -51,6 +51,14 @@ AI-powered financial dashboard for **Amazon Fire TV** and **Roku**.
 - Richer multi-line News/Crypto cards via Roku `MarkupGrid` + itemComponent
 - Stablecoin rounding ($0.99 → $1.00) if desired
 
+## Security note
+One Dependabot/npm-audit advisory exists (`fast-xml-parser <5.7.0`, moderate).
+It is a React Native CLI build-tooling transitive dep — NOT in the deployed
+backend, NOT exploitable here, and there is no non-breaking fix. Do NOT
+`npm audit fix --force` (it would break-bump react-native). It resolves
+naturally when react-native is upgraded in the Fire TV scaffold phase. Full
+assessment in `SECURITY.md`.
+
 ## CRITICAL gotchas for the next session
 1. **Folder name has a `.zip` suffix but IS a real directory.**
    `C:\Users\Armyg\marketpulse-tv-claude-code.zip` — don't try to unzip it.
