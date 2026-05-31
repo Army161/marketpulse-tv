@@ -9,6 +9,7 @@ import cryptoRoute from './routes/crypto';
 import newsRoute from './routes/news';
 import moversRoute from './routes/movers';
 import privacyRoute from './routes/privacy';
+import sentimentRoute from './routes/sentiment';
 
 /**
  * Build the Express app. Exported as a factory so the same app can be
@@ -27,6 +28,7 @@ export function createApp(): Express {
   app.use('/api/crypto', cryptoRoute);
   app.use('/api/news', newsRoute);
   app.use('/api/movers', moversRoute);
+  app.use('/api/sentiment', sentimentRoute);
 
   // Privacy policy for store submission. Mounted at both paths: `/privacy`
   // for the clean public URL (needs a vercel.json rewrite to reach the

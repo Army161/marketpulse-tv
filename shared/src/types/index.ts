@@ -98,6 +98,34 @@ export interface HealthResponse {
   uptime?: number;
 }
 
+/** Market sentiment classification buckets (Fear & Greed). */
+export type SentimentLabel =
+  | 'Extreme Fear'
+  | 'Fear'
+  | 'Neutral'
+  | 'Greed'
+  | 'Extreme Greed';
+
+/** A single sentiment gauge reading. */
+export interface Sentiment {
+  /** Source of the reading, e.g. "Alternative.me". */
+  source: string;
+  /** 0–100 score. */
+  value: number;
+  /** Bucketed classification for the score. */
+  label: SentimentLabel;
+  /** ISO-8601 timestamp of the reading. */
+  timestamp: string;
+}
+
+export interface SentimentResponse {
+  /** Primary gauge (crypto Fear & Greed). */
+  primary: Sentiment;
+  /** Optional additional gauges (e.g. a second methodology). */
+  gauges: Sentiment[];
+  updatedAt: string;
+}
+
 /** Standard typed error response — never leak raw third-party errors to clients. */
 export interface ApiErrorResponse {
   error: {

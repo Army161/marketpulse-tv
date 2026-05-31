@@ -4,11 +4,9 @@
     <script type="text/brightscript" uri="pkg:/source/HttpClient.brs" />
 
     <!--
-      Background fetch task. roUrlTransfer is a MAIN|TASK-only component and
-      cannot be created on the render thread, so all network I/O lives here.
-      The Scene sets `baseUrl` + control="RUN", then observes the output
-      fields below; results are handed back to the render thread via field
-      observers.
+      Background fetch task. roUrlTransfer is MAIN|TASK-only and cannot be
+      created on the render thread, so all network I/O lives here. The Scene
+      sets baseUrl + control="RUN" and observes the output fields below.
     -->
     <interface>
         <field id="baseUrl" type="string" />
@@ -16,6 +14,7 @@
         <field id="coins" type="array" />
         <field id="movers" type="assocarray" />
         <field id="articles" type="array" />
+        <field id="sentiment" type="assocarray" />
         <field id="lastUpdated" type="string" />
     </interface>
 </component>

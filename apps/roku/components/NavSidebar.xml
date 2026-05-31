@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="NavSidebar" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/NavSidebar.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <!-- Dashboard observes this to switch sections. -->
+        <field id="selectedSection" type="string" alwaysNotify="true" />
+        <field id="navFocus" type="boolean" onChange="onFocusReq" />
+    </interface>
+
+    <children>
+        <Rectangle id="sidebarBg" color="0x0A1320CC" width="300" height="1080" />
+        <Rectangle id="rightEdge" color="0x2A3B52FF" width="2" height="1080" translation="[298,0]" />
+        <MarkupList id="list"
+                    itemComponentName="NavItem"
+                    itemSize="[300,84]"
+                    numRows="6"
+                    translation="[0,200]"
+                    drawFocusFeedback="false" />
+    </children>
+</component>

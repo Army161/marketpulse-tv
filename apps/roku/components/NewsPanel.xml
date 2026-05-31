@@ -4,10 +4,17 @@
 
     <interface>
         <function name="setData" />
+        <function name="setListFocus" />
     </interface>
 
     <children>
-        <LabelList id="list" itemSize="[840, 96]" focusable="true"
-                   numRows="5" focusBitmapUri="pkg:/images/focus_ring.9.png" />
+        <LabelList id="list"
+                   itemSize="[1500,84]"
+                   numRows="8"
+                   color="0xCBD5E6FF"
+                   focusedColor="0xFFB800FF"
+                   font="font:MediumSystemFont"
+                   drawFocusFeedback="true"
+                   focusBitmapUri="pkg:/images/focus_ring.9.png" />
     </children>
 </component>

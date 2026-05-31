@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="NavItem" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/NavItem.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <field id="itemContent" type="node" onChange="onContentSet" />
+        <field id="width" type="float" />
+        <field id="height" type="float" />
+        <field id="focusPercent" type="float" onChange="onFocusSet" />
+    </interface>
+
+    <children>
+        <Rectangle id="bg" color="0x00000000" width="300" height="84" />
+        <Rectangle id="focusBar" color="0xFFB800FF" width="6" height="84" visible="false" />
+        <Label id="label" color="0x9AA7BCFF" font="font:MediumBoldSystemFont" translation="[36,28]" width="240" />
+    </children>
+</component>

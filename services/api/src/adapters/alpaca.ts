@@ -5,10 +5,12 @@ import { Errors } from '../lib/errors';
 import { logger } from '../lib/logger';
 import { MOCK_STOCKS } from './mockData';
 
-/** Symbols we surface on the dashboard ticker. */
+/** Top-20 large caps we surface on the dashboard ticker + markets screen. */
 export const DEFAULT_SYMBOLS = [
   'AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN',
   'META', 'TSLA', 'JPM', 'V', 'INTC',
+  'AMD', 'NFLX', 'DIS', 'BA', 'WMT',
+  'KO', 'XOM', 'BAC', 'PFE', 'CSCO',
 ];
 
 interface AlpacaSnapshotResponse {

@@ -2,33 +2,66 @@
 <component name="Dashboard" extends="Scene">
     <script type="text/brightscript" uri="pkg:/components/Dashboard.brs" />
     <script type="text/brightscript" uri="pkg:/source/Config.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
 
     <children>
-        <Rectangle id="bg" color="0x0A0E14FF" width="1920" height="1080" />
+        <!-- premium gradient backdrop -->
+        <Poster id="bg" uri="pkg:/images/bg_gradient_fhd.png" width="1920" height="1080" />
 
-        <Label id="title" text="MarketPulse" font="font:LargeBoldSystemFont"
-               color="0xFFB800FF" translation="[48, 32]" />
+        <!-- ===== HEADER ===== -->
+        <Label id="logo" text="MARKETPULSE" color="0xFFB800FF"
+               font="font:LargeBoldSystemFont" translation="[330,40]" />
+        <Label id="logoSub" text="LIVE FINANCE NETWORK" color="0x5C6B82FF"
+               font="font:SmallBoldSystemFont" translation="[332,104]" />
+        <Rectangle id="liveDot" color="0xFF3B47FF" width="16" height="16" translation="[1500,58]" />
+        <Label id="liveTxt" text="LIVE" color="0xFFFFFFFF" font="font:SmallBoldSystemFont" translation="[1524,52]" />
+        <Label id="clock" text="" color="0x9AA7BCFF" font="font:MediumBoldSystemFont"
+               translation="[1610,50]" width="270" horizAlign="right" />
+        <Label id="fngMini" text="" color="0x9AA7BCFF" font="font:SmallSystemFont"
+               translation="[1610,96]" width="270" horizAlign="right" />
+        <Poster id="headerLine" uri="pkg:/images/accent_line.png" width="1590" height="4" translation="[330,142]" />
 
-        <TickerRow id="ticker" translation="[0, 112]" />
+        <!-- ===== NAV SIDEBAR ===== -->
+        <NavSidebar id="nav" translation="[0,0]" />
 
-        <Label id="moversTitle" text="Top Movers" font="font:MediumBoldSystemFont"
-               color="0xFFFFFFFF" translation="[48, 200]" />
+        <!-- ===== SECTION: DASHBOARD OVERVIEW ===== -->
+        <Group id="dashGroup">
+            <Label text="TOP GAINERS" color="0x00E58FFF" font="font:MediumBoldSystemFont" translation="[330,180]" />
+            <Group id="gainers" translation="[330,232]" />
+            <Label text="TOP LOSERS" color="0xFF5B63FF" font="font:MediumBoldSystemFont" translation="[330,470]" />
+            <Group id="losers" translation="[330,522]" />
 
-        <!-- 6 rows (3 gainers + 3 losers) x 48px = 288px → spans y=248..536 -->
-        <LabelList id="moversList" translation="[48, 248]" itemSize="[460, 48]"
-                   numRows="6" focusable="true" />
+            <FearGreedGauge id="gauge" translation="[1060,190]" />
 
-        <Label id="cryptoTitle" text="Crypto" font="font:MediumBoldSystemFont"
-               color="0xFFFFFFFF" translation="[48, 560]" />
+            <Label text="LATEST HEADLINES" color="0x9AA7BCFF" font="font:MediumBoldSystemFont" translation="[1060,470]" />
+            <Group id="teaser" translation="[1060,522]" />
+        </Group>
 
-        <CryptoGrid id="cryptoGrid" translation="[48, 616]" />
+        <!-- ===== SECTION: CRYPTO ===== -->
+        <Group id="cryptoGroup" visible="false">
+            <Label text="CRYPTO  •  TOP 20" color="0xFFFFFFFF" font="font:MediumBoldSystemFont" translation="[330,180]" />
+            <AssetList id="cryptoList" translation="[330,236]" />
+        </Group>
 
-        <Label id="newsTitle" text="AI News" font="font:MediumBoldSystemFont"
-               color="0xFFFFFFFF" translation="[1000, 200]" />
+        <!-- ===== SECTION: STOCKS ===== -->
+        <Group id="stocksGroup" visible="false">
+            <Label text="STOCKS  •  TOP 20" color="0xFFFFFFFF" font="font:MediumBoldSystemFont" translation="[330,180]" />
+            <AssetList id="stocksList" translation="[330,236]" />
+        </Group>
 
-        <NewsPanel id="newsPanel" translation="[1000, 256]" />
+        <!-- ===== SECTION: NEWS ===== -->
+        <Group id="newsGroup" visible="false">
+            <Label text="MARKET NEWS" color="0xFFFFFFFF" font="font:MediumBoldSystemFont" translation="[330,180]" />
+            <NewsPanel id="newsPanel" translation="[330,236]" />
+        </Group>
 
-        <Label id="status" text="" font="font:SmallSystemFont"
-               color="0x8B96ABFF" translation="[48, 1024]" />
+        <!-- ===== CHYRON TICKER (bottom) ===== -->
+        <TickerRow id="ticker" translation="[0,984]" />
+
+        <!-- status line above chyron -->
+        <Label id="status" text="" color="0x5C6B82FF" font="font:SmallestSystemFont" translation="[330,950]" />
+
+        <!-- ===== DETAIL OVERLAY (hidden) ===== -->
+        <DetailOverlay id="overlay" />
     </children>
 </component>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="TickerRow" extends="Group">
     <script type="text/brightscript" uri="pkg:/components/TickerRow.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
 
     <interface>
         <function name="setData" />
     </interface>
 
     <children>
-        <Rectangle id="bg" color="0x141B24FF" width="1920" height="72" />
-        <!-- content node declared BEFORE the animation so it is addressable;
-             the interpolator's fieldToInterp is bound in TickerRow.brs init()
-             rather than as an XML string path (which resolved too early and
-             logged "Could not find node content"). -->
-        <Group id="content" translation="[0, 0]" />
-        <Animation id="scrollAnim" duration="60" repeat="true" easeFunction="linear">
-            <Vector2DFieldInterpolator id="scrollInterp" key="[0.0, 1.0]"
-                                       keyValue="[ [1920, 0], [-1920, 0] ]" />
-        </Animation>
+        <Poster id="chyronBg" uri="pkg:/images/chyron_bg.png" width="1920" height="96" />
+        <Poster id="accent" uri="pkg:/images/accent_line.png" width="1920" height="4" translation="[0,0]" />
+        <!-- "LIVE MARKETS" badge on the left rail of the chyron -->
+        <Rectangle id="badge" color="0xFFB800FF" width="220" height="96" translation="[0,0]">
+            <Label id="badgeText" text="● LIVE MARKETS" color="0x05070BFF"
+                   font="font:SmallBoldSystemFont" translation="[18,36]" width="200" />
+        </Rectangle>
+        <!-- The moving content lives in this group; we animate its translation. -->
+        <Group id="content" translation="[240,0]" />
     </children>
 </component>

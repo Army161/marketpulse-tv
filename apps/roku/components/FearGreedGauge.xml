@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="FearGreedGauge" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/FearGreedGauge.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <function name="setData" />
+    </interface>
+
+    <children>
+        <Label id="title" text="FEAR &amp; GREED INDEX" color="0x9AA7BCFF"
+               font="font:SmallBoldSystemFont" translation="[0,0]" />
+
+        <!-- Big numeric readout -->
+        <Label id="value" text="--" color="0xFFFFFFFF"
+               font="font:LargeBoldSystemFont" translation="[0,36]" />
+        <Label id="label" text="" color="0xFFB800FF"
+               font="font:MediumBoldSystemFont" translation="[0,118]" />
+
+        <!-- Gradient bar (red -> green) with a marker positioned by value -->
+        <Poster id="bar" uri="pkg:/images/gauge_bar.png" width="520" height="22"
+                translation="[0,180]" />
+        <Rectangle id="marker" color="0xFFFFFFFF" width="6" height="38"
+                   translation="[0,172]" />
+
+        <!-- Scale endpoints -->
+        <Label id="lo" text="0  Extreme Fear" color="0x5C6B82FF"
+               font="font:SmallestSystemFont" translation="[0,212]" />
+        <Label id="hi" text="Extreme Greed  100" color="0x5C6B82FF"
+               font="font:SmallestSystemFont" translation="[360,212]" />
+    </children>
+</component>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="DetailOverlay" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/DetailOverlay.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <function name="show" />
+    </interface>
+
+    <children>
+        <!-- dim scrim over the whole screen -->
+        <Rectangle id="scrim" color="0x05070BE6" width="1920" height="1080" />
+        <!-- centered card -->
+        <Rectangle id="card" color="0x131E30FF" width="900" height="520" translation="[510,280]">
+            <Rectangle id="cardAccent" color="0xFFB800FF" width="900" height="8" />
+            <Label id="sym" color="0xFFFFFFFF" font="font:LargeBoldSystemFont" translation="[48,48]" />
+            <Label id="name" color="0x9AA7BCFF" font="font:MediumSystemFont" translation="[48,150]" width="800" />
+            <Label id="price" color="0xFFFFFFFF" font="font:LargeBoldSystemFont" translation="[48,220]" />
+            <Label id="chg" color="0x00E58FFF" font="font:MediumBoldSystemFont" translation="[48,330]" />
+            <Label id="hint" text="Press BACK to close" color="0x5C6B82FF"
+                   font="font:SmallSystemFont" translation="[48,440]" />
+        </Rectangle>
+    </children>
+</component>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="AssetList" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/AssetList.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <function name="setData" />
+        <!-- Dashboard observes this; set to the selected asset's payload on SELECT. -->
+        <field id="selectedPayload" type="assocarray" alwaysNotify="true" />
+        <field id="rowsFocus" type="boolean" onChange="onFocusReq" />
+    </interface>
+
+    <children>
+        <MarkupList id="list"
+                    itemComponentName="AssetRow"
+                    itemSize="[820,64]"
+                    numRows="9"
+                    drawFocusFeedback="false"
+                    vertFocusAnimationStyle="floatingFocus" />
+    </children>
+</component>

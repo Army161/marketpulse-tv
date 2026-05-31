@@ -17,6 +17,16 @@ export const MOCK_STOCKS: Stock[] = [
   { symbol: 'JPM', name: 'JPMorgan', price: 215.78, change: 0.45, changePercent: 0.21, sector: 'Finance' },
   { symbol: 'V', name: 'Visa', price: 287.91, change: 1.10, changePercent: 0.38, sector: 'Finance' },
   { symbol: 'INTC', name: 'Intel', price: 22.43, change: -0.72, changePercent: -3.10, sector: 'Technology' },
+  { symbol: 'AMD', name: 'AMD', price: 168.22, change: 3.41, changePercent: 2.07, sector: 'Technology' },
+  { symbol: 'NFLX', name: 'Netflix', price: 678.45, change: 5.12, changePercent: 0.76, sector: 'Communication' },
+  { symbol: 'DIS', name: 'Disney', price: 112.30, change: -1.05, changePercent: -0.93, sector: 'Communication' },
+  { symbol: 'BA', name: 'Boeing', price: 182.67, change: 2.21, changePercent: 1.22, sector: 'Industrials' },
+  { symbol: 'WMT', name: 'Walmart', price: 81.04, change: 0.44, changePercent: 0.55, sector: 'Consumer' },
+  { symbol: 'KO', name: 'Coca-Cola', price: 71.55, change: 0.18, changePercent: 0.25, sector: 'Consumer' },
+  { symbol: 'XOM', name: 'Exxon Mobil', price: 118.92, change: -0.83, changePercent: -0.69, sector: 'Energy' },
+  { symbol: 'BAC', name: 'Bank of America', price: 44.18, change: 0.36, changePercent: 0.82, sector: 'Finance' },
+  { symbol: 'PFE', name: 'Pfizer', price: 28.74, change: -0.21, changePercent: -0.73, sector: 'Healthcare' },
+  { symbol: 'CSCO', name: 'Cisco', price: 58.61, change: 0.49, changePercent: 0.84, sector: 'Technology' },
 ];
 
 export const MOCK_COINS: Coin[] = [
