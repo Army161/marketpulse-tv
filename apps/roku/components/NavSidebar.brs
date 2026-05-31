@@ -3,7 +3,7 @@
 
 sub init()
     m.list = m.top.findNode("list")
-    m.sections = ["Dashboard", "Crypto", "Stocks", "News"]
+    m.sections = ["Home", "Crypto", "Stocks", "News", "Sentiment", "Settings", "Upgrade"]
 
     root = CreateObject("roSGNode", "ContentNode")
     for each s in m.sections

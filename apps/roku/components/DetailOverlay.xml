@@ -10,8 +10,10 @@
     <children>
         <!-- dim scrim over the whole screen -->
         <Rectangle id="scrim" color="0x05070BE6" width="1920" height="1080" />
-        <!-- centered card -->
-        <Rectangle id="card" color="0x131E30FF" width="900" height="520" translation="[510,280]">
+        <!-- soft gold glow behind the frosted card -->
+        <Poster id="cardGlow" uri="pkg:/images/glow_gold.png" width="1140" height="760" translation="[390,160]" />
+        <!-- frosted glass card (9-patch) -->
+        <Poster id="card" uri="pkg:/images/glass_panel.9.png" width="900" height="520" translation="[510,280]">
             <Rectangle id="cardAccent" color="0xFFB800FF" width="900" height="8" />
             <Label id="sym" color="0xFFFFFFFF" font="font:LargeBoldSystemFont" translation="[48,48]" />
             <Label id="name" color="0x9AA7BCFF" font="font:MediumSystemFont" translation="[48,150]" width="800" />

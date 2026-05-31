@@ -11,8 +11,10 @@
     </interface>
 
     <children>
-        <Rectangle id="bg" color="0x00000000" width="300" height="84" />
-        <Rectangle id="focusBar" color="0xFFB800FF" width="6" height="84" visible="false" />
-        <Label id="label" color="0x9AA7BCFF" font="font:MediumBoldSystemFont" translation="[36,28]" width="240" />
+        <!-- frosted glass highlight shown on focus (9-patch stretches cleanly) -->
+        <Poster id="glass" uri="pkg:/images/glass_focus.9.png"
+                width="278" height="72" translation="[12,6]" visible="false" />
+        <Rectangle id="focusBar" color="0xFFB800FF" width="6" height="72" translation="[0,6]" visible="false" />
+        <Label id="label" color="0x9AA7BCFF" font="font:MediumBoldSystemFont" translation="[40,28]" width="240" />
     </children>
 </component>

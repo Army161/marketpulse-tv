@@ -1,7 +1,7 @@
-' NavItem.brs — itemComponent for the NavSidebar.
+' NavItem.brs — itemComponent for the NavSidebar (glassmorphism focus).
 
 sub init()
-    m.bg = m.top.findNode("bg")
+    m.glass = m.top.findNode("glass")
     m.focusBar = m.top.findNode("focusBar")
     m.label = m.top.findNode("label")
     m.theme = Theme()
@@ -14,12 +14,12 @@ end sub
 
 sub onFocusSet()
     if m.top.focusPercent > 0.5
+        m.glass.visible = true
         m.focusBar.visible = true
-        m.bg.color = "0x16223399"
-        m.label.color = m.theme.colors.accent
+        m.label.color = m.theme.colors.text
     else
+        m.glass.visible = false
         m.focusBar.visible = false
-        m.bg.color = "0x00000000"
         m.label.color = m.theme.colors.textMuted
     end if
 end sub

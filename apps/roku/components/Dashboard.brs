@@ -26,18 +26,30 @@ sub init()
     m.stocksList = m.top.findNode("stocksList")
     m.newsPanel = m.top.findNode("newsPanel")
 
+    ' new page refs
+    m.gauge2 = m.top.findNode("gauge2")
+    m.sentExplain = m.top.findNode("sentExplain")
+    m.settingsRows = m.top.findNode("settingsRows")
+    m.pricingCards = m.top.findNode("pricingCards")
+
     m.groups = {
-        Dashboard: m.top.findNode("dashGroup")
+        Home:      m.top.findNode("dashGroup")
         Crypto:    m.top.findNode("cryptoGroup")
         Stocks:    m.top.findNode("stocksGroup")
         News:      m.top.findNode("newsGroup")
+        Sentiment: m.top.findNode("sentimentGroup")
+        Settings:  m.top.findNode("settingsGroup")
+        Upgrade:   m.top.findNode("upgradeGroup")
     }
 
-    m.currentSection = "Dashboard"
+    m.currentSection = "Home"
     m.inContent = false
     m.overlayOpen = false
     m.coins = []
     m.stocks = []
+
+    buildSettings()
+    buildPricing()
 
     ' Section + selection wiring
     m.nav.observeField("selectedSection", "onSectionChange")
@@ -141,8 +153,18 @@ sub onSentiment()
     s = m.fetcher.sentiment
     if s = invalid then return
     m.gauge.callFunc("setData", s)
+    m.gauge2.callFunc("setData", s)
     m.fngMini.text = "Fear & Greed  " + Str(s.value).trim() + "  " + s.label
+    m.sentExplain.text = SentimentBlurb(s.value, s.label) + Chr(10) + Chr(10) + "Source: " + s.source + "  •  updates daily."
 end sub
+
+function SentimentBlurb(v as Integer, label as String) as String
+    if v < 25 then return "Extreme Fear (" + Str(v).trim() + "). Investors are very worried — historically a zone where assets are oversold and contrarian buyers start looking for value."
+    if v < 45 then return "Fear (" + Str(v).trim() + "). Caution dominates the market; sentiment is risk-off but not panicked."
+    if v < 55 then return "Neutral (" + Str(v).trim() + "). The market is balanced between fear and greed — no strong directional bias in sentiment."
+    if v < 75 then return "Greed (" + Str(v).trim() + "). Optimism is rising; momentum is positive but watch for froth."
+    return "Extreme Greed (" + Str(v).trim() + "). Euphoria dominates — historically a zone where markets can be due for a pullback."
+end function
 
 sub onLastUpdated()
     m.status.text = "Live market feed  •  updated " + m.fetcher.lastUpdated + "  •  auto-refresh 30s"
@@ -226,6 +248,80 @@ sub refocusContent()
     else
         m.nav.navFocus = true
     end if
+end sub
+
+' ---------- Settings page (glass info rows) ----------
+sub buildSettings()
+    rows = [
+        ["Refresh rate", "30 seconds (auto)"],
+        ["Stocks data", "Alpaca Markets (live)"],
+        ["Crypto data", "CoinGecko (live)"],
+        ["News", "NewsAPI + Gemini AI summaries"],
+        ["Sentiment", "Alternative.me Fear & Greed"],
+        ["Theme", "MarketPulse Dark — Glass"],
+        ["Version", "1.0  (build 00004)"],
+        ["Privacy", "marketpulse-tv.vercel.app/privacy"]
+    ]
+    y = 0
+    for each r in rows
+        lbl = m.settingsRows.createChild("Label")
+        lbl.text = r[0]
+        lbl.font = "font:MediumBoldSystemFont"
+        lbl.color = m.theme.colors.textMuted
+        lbl.translation = [0, y]
+        lbl.width = 440
+
+        val = m.settingsRows.createChild("Label")
+        val.text = r[1]
+        val.font = "font:MediumSystemFont"
+        val.color = m.theme.colors.text
+        val.translation = [470, y]
+        val.width = 620
+        y = y + 60
+    end for
+end sub
+
+' ---------- Upgrade page (glass pricing cards) ----------
+sub buildPricing()
+    tiers = [
+        { name: "FREE", price: "$0", accent: m.theme.colors.textMuted, feats: ["60s refresh", "Basic ticker", "Ad-supported (Roku)"] },
+        { name: "PREMIUM", price: "$9.99/mo", accent: m.theme.colors.accent, feats: ["10s refresh", "Full markets data", "AI news feed", "Ad-free"] },
+        { name: "PRO", price: "$14.99/mo", accent: m.theme.colors.up, feats: ["Everything in Premium", "Portfolio tracker", "Custom watchlist", "Price alerts"] }
+    ]
+    x = 0
+    for each t in tiers
+        card = m.pricingCards.createChild("Poster")
+        card.uri = "pkg:/images/glass_panel.9.png"
+        card.width = 370
+        card.height = 580
+        card.translation = [x, 0]
+
+        nm = card.createChild("Label")
+        nm.text = t.name
+        nm.font = "font:LargeBoldSystemFont"
+        nm.color = t.accent
+        nm.translation = [36, 36]
+
+        pr = card.createChild("Label")
+        pr.text = t.price
+        pr.font = "font:MediumBoldSystemFont"
+        pr.color = m.theme.colors.text
+        pr.translation = [36, 120]
+
+        fy = 210
+        for each f in t.feats
+            fl = card.createChild("Label")
+            fl.text = "•  " + f
+            fl.font = "font:MediumSystemFont"
+            fl.color = m.theme.colors.textMuted
+            fl.translation = [36, fy]
+            fl.width = 300
+            fl.wrap = true
+            fl.maxLines = 2
+            fy = fy + 64
+        end for
+        x = x + 400
+    end for
 end sub
 
 ' ---------- Timers ----------
