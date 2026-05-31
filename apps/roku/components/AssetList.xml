@@ -7,7 +7,7 @@
         <function name="setData" />
         <!-- Dashboard observes this; set to the selected asset's payload on SELECT. -->
         <field id="selectedPayload" type="assocarray" alwaysNotify="true" />
-        <field id="rowsFocus" type="boolean" onChange="onFocusReq" />
+        <field id="rowsFocus" type="boolean" alwaysNotify="true" onChange="onFocusReq" />
     </interface>
 
     <children>

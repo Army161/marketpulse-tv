@@ -6,7 +6,7 @@
     <interface>
         <!-- Dashboard observes this to switch sections. -->
         <field id="selectedSection" type="string" alwaysNotify="true" />
-        <field id="navFocus" type="boolean" onChange="onFocusReq" />
+        <field id="navFocus" type="boolean" alwaysNotify="true" onChange="onFocusReq" />
     </interface>
 
     <children>
