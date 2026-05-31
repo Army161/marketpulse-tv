@@ -9,18 +9,18 @@
 
     <children>
         <!-- dim scrim over the whole screen -->
-        <Rectangle id="scrim" color="0x05070BE6" width="1920" height="1080" />
+        <Rectangle id="scrim" color="0x05070BF2" width="1920" height="1080" />
         <!-- soft gold glow behind the frosted card -->
         <Poster id="cardGlow" uri="pkg:/images/glow_gold.png" width="1140" height="760" translation="[390,160]" />
         <!-- frosted glass card (9-patch) -->
         <Poster id="card" uri="pkg:/images/glass_panel.9.png" width="900" height="520" translation="[510,280]">
-            <Rectangle id="cardAccent" color="0xFFB800FF" width="900" height="8" />
+            <Rectangle id="cardAccent" color="0xF7C948FF" width="900" height="8" />
             <Label id="sym" color="0xFFFFFFFF" font="font:LargeBoldSystemFont" translation="[48,48]" />
-            <Label id="name" color="0x9AA7BCFF" font="font:MediumSystemFont" translation="[48,150]" width="800" />
+            <Label id="name" color="0x94A3B8FF" font="font:MediumSystemFont" translation="[48,150]" width="800" />
             <Label id="price" color="0xFFFFFFFF" font="font:LargeBoldSystemFont" translation="[48,220]" />
-            <Label id="chg" color="0x00E58FFF" font="font:MediumBoldSystemFont" translation="[48,330]" />
-            <Label id="hint" text="Press BACK to close" color="0x5C6B82FF"
+            <Label id="chg" color="0x34D399FF" font="font:MediumBoldSystemFont" translation="[48,330]" />
+            <Label id="hint" text="Press BACK to close" color="0x64748BFF"
                    font="font:SmallSystemFont" translation="[48,440]" />
-        </Rectangle>
+        </Poster>
     </children>
 </component>

@@ -37,8 +37,8 @@ end function
 function ZoneColor(v as Integer) as String
     th = Theme()
     if v < 25 then return th.colors.down            ' extreme fear -> red
-    if v < 45 then return "0xFF8A3DFF"              ' fear -> orange
+    if v < 45 then return "0xFB923CFF"              ' fear -> orange
     if v < 55 then return th.colors.accent          ' neutral -> gold
-    if v < 75 then return "0xAED81FFF"              ' greed -> lime
+    if v < 75 then return "0x9AE66EFF"              ' greed -> lime
     return th.colors.up                              ' extreme greed -> green
 end function

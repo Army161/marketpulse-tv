@@ -8,15 +8,15 @@
         <Poster id="bg" uri="pkg:/images/bg_gradient_fhd.png" width="1920" height="1080" />
 
         <!-- ===== HEADER ===== -->
-        <Label id="logo" text="MARKETPULSE" color="0xFFB800FF"
+        <Label id="logo" text="MARKETPULSE" color="0xF7C948FF"
                font="font:LargeBoldSystemFont" translation="[330,40]" />
-        <Label id="logoSub" text="LIVE FINANCE NETWORK" color="0x5C6B82FF"
+        <Label id="logoSub" text="LIVE FINANCE NETWORK" color="0x64748BFF"
                font="font:SmallBoldSystemFont" translation="[332,104]" />
-        <Rectangle id="liveDot" color="0xFF3B47FF" width="16" height="16" translation="[1500,58]" />
+        <Rectangle id="liveDot" color="0xF43F5EFF" width="16" height="16" translation="[1500,58]" />
         <Label id="liveTxt" text="LIVE" color="0xFFFFFFFF" font="font:SmallBoldSystemFont" translation="[1524,52]" />
-        <Label id="clock" text="" color="0x9AA7BCFF" font="font:MediumBoldSystemFont"
+        <Label id="clock" text="" color="0x94A3B8FF" font="font:MediumBoldSystemFont"
                translation="[1610,50]" width="270" horizAlign="right" />
-        <Label id="fngMini" text="" color="0x9AA7BCFF" font="font:SmallSystemFont"
+        <Label id="fngMini" text="" color="0x94A3B8FF" font="font:SmallSystemFont"
                translation="[1610,96]" width="270" horizAlign="right" />
         <Poster id="headerLine" uri="pkg:/images/accent_line.png" width="1590" height="4" translation="[330,142]" />
 
@@ -25,12 +25,12 @@
 
         <!-- ===== PAGE: HOME ===== -->
         <Group id="dashGroup">
-            <Label text="TOP GAINERS" color="0x00E58FFF" font="font:MediumBoldSystemFont" translation="[330,180]" />
+            <Label text="TOP GAINERS" color="0x34D399FF" font="font:MediumBoldSystemFont" translation="[330,180]" />
             <Group id="gainers" translation="[330,232]" />
-            <Label text="TOP LOSERS" color="0xFF5B63FF" font="font:MediumBoldSystemFont" translation="[330,470]" />
+            <Label text="TOP LOSERS" color="0xF43F5EFF" font="font:MediumBoldSystemFont" translation="[330,470]" />
             <Group id="losers" translation="[330,522]" />
             <FearGreedGauge id="gauge" translation="[1060,190]" />
-            <Label text="LATEST HEADLINES" color="0x9AA7BCFF" font="font:MediumBoldSystemFont" translation="[1060,470]" />
+            <Label text="LATEST HEADLINES" color="0x94A3B8FF" font="font:MediumBoldSystemFont" translation="[1060,470]" />
             <Group id="teaser" translation="[1060,522]" />
         </Group>
 
@@ -57,7 +57,7 @@
             <Label text="MARKET SENTIMENT" color="0xFFFFFFFF" font="font:MediumBoldSystemFont" translation="[330,180]" />
             <Poster id="sentGlass" uri="pkg:/images/glass_panel.9.png" width="1180" height="600" translation="[330,236]" />
             <FearGreedGauge id="gauge2" translation="[400,300]" />
-            <Label id="sentExplain" color="0xCBD5E6FF" font="font:MediumSystemFont"
+            <Label id="sentExplain" color="0xCBD5E1FF" font="font:MediumSystemFont"
                    translation="[400,560]" width="1040" wrap="true" maxLines="5" />
         </Group>
 
@@ -76,7 +76,7 @@
 
         <!-- ===== CHYRON TICKER ===== -->
         <TickerRow id="ticker" translation="[0,984]" />
-        <Label id="status" text="" color="0x5C6B82FF" font="font:SmallestSystemFont" translation="[330,950]" />
+        <Label id="status" text="" color="0x64748BFF" font="font:SmallestSystemFont" translation="[330,950]" />
 
         <!-- ===== DETAIL OVERLAY ===== -->
         <DetailOverlay id="overlay" />

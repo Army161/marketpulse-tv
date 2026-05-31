@@ -155,10 +155,10 @@ sub onSentiment()
     m.gauge.callFunc("setData", s)
     m.gauge2.callFunc("setData", s)
     m.fngMini.text = "Fear & Greed  " + Str(s.value).trim() + "  " + s.label
-    m.sentExplain.text = SentimentBlurb(s.value, s.label) + Chr(10) + Chr(10) + "Source: " + s.source + "  •  updates daily."
+    m.sentExplain.text = SentimentBlurb(s.value) + Chr(10) + Chr(10) + "Source: " + s.source + "  •  updates daily."
 end sub
 
-function SentimentBlurb(v as Integer, label as String) as String
+function SentimentBlurb(v as Integer) as String
     if v < 25 then return "Extreme Fear (" + Str(v).trim() + "). Investors are very worried — historically a zone where assets are oversold and contrarian buyers start looking for value."
     if v < 45 then return "Fear (" + Str(v).trim() + "). Caution dominates the market; sentiment is risk-off but not panicked."
     if v < 55 then return "Neutral (" + Str(v).trim() + "). The market is balanced between fear and greed — no strong directional bias in sentiment."
@@ -347,8 +347,8 @@ sub onTick()
     ' blink the LIVE dot
     m.blink = not m.blink
     if m.blink
-        m.liveDot.color = "0xFF3B47FF"
+        m.liveDot.color = "0xF43F5EFF"
     else
-        m.liveDot.color = "0xFF3B4733"
+        m.liveDot.color = "0xF43F5E55"
     end if
 end sub

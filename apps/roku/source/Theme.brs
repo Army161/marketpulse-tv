@@ -1,22 +1,23 @@
-' Theme.brs — central design system for the channel.
-' One source of truth for color, type, and spacing so every component looks
-' like part of the same broadcast, not a pile of ad-hoc styles.
+' Theme.brs — MarketPulse "Midnight" design system.
+' One disciplined palette: a single signature gold accent, a tight slate-navy
+' neutral ramp, and refined (not neon) semantic green/red. Every component
+' derives its color from here so the whole channel reads cohesive and premium.
 
 function Theme() as Object
     return {
         colors: {
-            bg:        "0x05070BFF"   ' deepest base (behind the gradient poster)
-            panel:     "0x111B2BCC"   ' translucent card fill
-            panelSolid:"0x131E30FF"
-            border:    "0x2A3B52FF"
-            text:      "0xFFFFFFFF"
-            textMuted: "0x9AA7BCFF"
-            textDim:   "0x5C6B82FF"
-            accent:    "0xFFB800FF"   ' gold — CTAs, focus, branding
-            accentSoft:"0xFFB80022"
-            up:        "0x00E58FFF"   ' green
-            down:      "0xFF5B63FF"   ' red
-            live:      "0xFF3B47FF"   ' broadcast "LIVE" red dot
+            bg:        "0x070B12FF"   ' deep slate-navy base
+            panel:     "0x111A2BCC"   ' frosted card fill
+            panelSolid:"0x111A2BFF"
+            border:    "0x1E293BFF"
+            text:      "0xF8FAFCFF"   ' near-white
+            textMuted: "0x94A3B8FF"   ' slate
+            textDim:   "0x64748BFF"
+            accent:    "0xF7C948FF"   ' signature gold
+            accentSoft:"0xF7C94822"
+            up:        "0x34D399FF"   ' emerald
+            down:      "0xF43F5EFF"   ' rose-red
+            live:      "0xF43F5EFF"
         }
         font: {
             display: "font:LargeBoldSystemFont"
@@ -29,7 +30,6 @@ function Theme() as Object
     }
 end function
 
-' Pick up/down/flat color for a numeric change.
 function ChangeColor(value as Dynamic) as String
     th = Theme()
     if value = invalid then return th.colors.textMuted
@@ -38,13 +38,11 @@ function ChangeColor(value as Dynamic) as String
     return th.colors.textMuted
 end function
 
-' 2-decimal money with no leading-space artifact.
 function FmtMoney(value as Dynamic) as String
     if value = invalid then return "$0"
     return "$" + Str(Int(value * 100) / 100.0).trim()
 end function
 
-' Signed 2-decimal percent.
 function FmtPct(value as Dynamic) as String
     if value = invalid then value = 0
     sign = ""

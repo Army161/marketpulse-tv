@@ -8,13 +8,13 @@
     </interface>
 
     <children>
-        <Label id="title" text="FEAR &amp; GREED INDEX" color="0x9AA7BCFF"
+        <Label id="title" text="FEAR &amp; GREED INDEX" color="0x94A3B8FF"
                font="font:SmallBoldSystemFont" translation="[0,0]" />
 
         <!-- Big numeric readout -->
         <Label id="value" text="--" color="0xFFFFFFFF"
                font="font:LargeBoldSystemFont" translation="[0,36]" />
-        <Label id="label" text="" color="0xFFB800FF"
+        <Label id="label" text="" color="0xF7C948FF"
                font="font:MediumBoldSystemFont" translation="[0,118]" />
 
         <!-- Gradient bar (red -> green) with a marker positioned by value -->
@@ -24,9 +24,9 @@
                    translation="[0,172]" />
 
         <!-- Scale endpoints -->
-        <Label id="lo" text="0  Extreme Fear" color="0x5C6B82FF"
+        <Label id="lo" text="0  Extreme Fear" color="0x64748BFF"
                font="font:SmallestSystemFont" translation="[0,212]" />
-        <Label id="hi" text="Extreme Greed  100" color="0x5C6B82FF"
+        <Label id="hi" text="Extreme Greed  100" color="0x64748BFF"
                font="font:SmallestSystemFont" translation="[360,212]" />
     </children>
 </component>

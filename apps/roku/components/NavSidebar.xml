@@ -10,8 +10,8 @@
     </interface>
 
     <children>
-        <Rectangle id="sidebarBg" color="0x0A1320CC" width="300" height="1080" />
-        <Rectangle id="rightEdge" color="0x2A3B52FF" width="2" height="1080" translation="[298,0]" />
+        <Rectangle id="sidebarBg" color="0x0B1320E6" width="300" height="1080" />
+        <Rectangle id="rightEdge" color="0x1E293BFF" width="2" height="1080" translation="[298,0]" />
         <MarkupList id="list"
                     itemComponentName="NavItem"
                     itemSize="[300,84]"

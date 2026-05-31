@@ -36,7 +36,7 @@ sub onFocusSet()
     f = m.top.focusPercent
     if f > 0.5
         m.focusBar.visible = true
-        m.rowBg.color = "0x1B2A40FF"
+        m.rowBg.color = "0x1B263BFF"
         m.sym.color = m.theme.colors.accent
     else
         m.focusBar.visible = false

@@ -12,10 +12,10 @@
 
     <children>
         <Rectangle id="rowBg" color="0x111B2B00" width="820" height="64" />
-        <Rectangle id="focusBar" color="0xFFB800FF" width="6" height="64" visible="false" />
+        <Rectangle id="focusBar" color="0xF7C948FF" width="6" height="64" visible="false" />
         <Label id="sym"   color="0xFFFFFFFF" font="font:MediumBoldSystemFont" translation="[28,16]"  width="220" />
-        <Label id="price" color="0x9AA7BCFF" font="font:MediumSystemFont"     translation="[300,18]" width="240" />
-        <Label id="chg"   color="0x00E58FFF" font="font:MediumBoldSystemFont" translation="[600,18]" width="200"
+        <Label id="price" color="0x94A3B8FF" font="font:MediumSystemFont"     translation="[300,18]" width="240" />
+        <Label id="chg"   color="0x34D399FF" font="font:MediumBoldSystemFont" translation="[600,18]" width="200"
                horizAlign="right" />
     </children>
 </component>
