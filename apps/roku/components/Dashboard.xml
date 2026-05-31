@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="Dashboard" extends="Scene">
+    <script type="text/brightscript" uri="pkg:/components/Dashboard.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Config.brs" />
+
+    <children>
+        <Rectangle id="bg" color="0x0A0E14FF" width="1920" height="1080" />
+
+        <Label id="title" text="MarketPulse" font="font:LargeBoldSystemFont"
+               color="0xFFB800FF" translation="[48, 32]" />
+
+        <TickerRow id="ticker" translation="[0, 112]" />
+
+        <Label id="moversTitle" text="Top Movers" font="font:MediumBoldSystemFont"
+               color="0xFFFFFFFF" translation="[48, 200]" />
+
+        <!-- 6 rows (3 gainers + 3 losers) x 48px = 288px → spans y=248..536 -->
+        <LabelList id="moversList" translation="[48, 248]" itemSize="[460, 48]"
+                   numRows="6" focusable="true" />
+
+        <Label id="cryptoTitle" text="Crypto" font="font:MediumBoldSystemFont"
+               color="0xFFFFFFFF" translation="[48, 560]" />
+
+        <CryptoGrid id="cryptoGrid" translation="[48, 616]" />
+
+        <Label id="newsTitle" text="AI News" font="font:MediumBoldSystemFont"
+               color="0xFFFFFFFF" translation="[1000, 200]" />
+
+        <NewsPanel id="newsPanel" translation="[1000, 256]" />
+
+        <Label id="status" text="" font="font:SmallSystemFont"
+               color="0x8B96ABFF" translation="[48, 1024]" />
+    </children>
+</component>

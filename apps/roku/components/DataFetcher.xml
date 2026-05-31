@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="DataFetcher" extends="Task">
+    <script type="text/brightscript" uri="pkg:/components/DataFetcher.brs" />
+    <script type="text/brightscript" uri="pkg:/source/HttpClient.brs" />
+
+    <!--
+      Background fetch task. roUrlTransfer is a MAIN|TASK-only component and
+      cannot be created on the render thread, so all network I/O lives here.
+      The Scene sets `baseUrl` + control="RUN", then observes the output
+      fields below; results are handed back to the render thread via field
+      observers.
+    -->
+    <interface>
+        <field id="baseUrl" type="string" />
+        <field id="stocks" type="array" />
+        <field id="coins" type="array" />
+        <field id="movers" type="assocarray" />
+        <field id="articles" type="array" />
+        <field id="lastUpdated" type="string" />
+    </interface>
+</component>

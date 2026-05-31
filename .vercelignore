@@ -1,0 +1,11 @@
+apps/
+docs/
+.claude/
+*.md
+.env
+.env.local
+.env.*.local
+**/*.test.ts
+coverage/
+.git/
+.github/

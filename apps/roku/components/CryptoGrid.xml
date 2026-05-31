@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="CryptoGrid" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/CryptoGrid.brs" />
+
+    <interface>
+        <function name="setData" />
+    </interface>
+
+    <!--
+      LabelList renders a ContentNode's `title` automatically. A bare RowList
+      does NOT render without a custom itemComponent, which is why the earlier
+      grid showed nothing. We pack symbol/price/change into the title string.
+    -->
+    <children>
+        <LabelList id="list" itemSize="[460, 56]" numRows="7" focusable="true" />
+    </children>
+</component>

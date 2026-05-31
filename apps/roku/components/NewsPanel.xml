@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="NewsPanel" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/NewsPanel.brs" />
+
+    <interface>
+        <function name="setData" />
+    </interface>
+
+    <children>
+        <LabelList id="list" itemSize="[840, 96]" focusable="true"
+                   numRows="5" focusBitmapUri="pkg:/images/focus_ring.9.png" />
+    </children>
+</component>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="TickerRow" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/TickerRow.brs" />
+
+    <interface>
+        <function name="setData" />
+    </interface>
+
+    <children>
+        <Rectangle id="bg" color="0x141B24FF" width="1920" height="72" />
+        <!-- content node declared BEFORE the animation so it is addressable;
+             the interpolator's fieldToInterp is bound in TickerRow.brs init()
+             rather than as an XML string path (which resolved too early and
+             logged "Could not find node content"). -->
+        <Group id="content" translation="[0, 0]" />
+        <Animation id="scrollAnim" duration="60" repeat="true" easeFunction="linear">
+            <Vector2DFieldInterpolator id="scrollInterp" key="[0.0, 1.0]"
+                                       keyValue="[ [1920, 0], [-1920, 0] ]" />
+        </Animation>
+    </children>
+</component>

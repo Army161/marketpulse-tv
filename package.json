@@ -1,0 +1,32 @@
+{
+  "name": "marketpulse-tv",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered financial market dashboard for Amazon Fire TV and Roku",
+  "workspaces": [
+    "apps/firetv",
+    "services/api",
+    "shared"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "vercel-build": "npm run build --workspace=shared && npm run build --workspace=services/api",
+    "dev:api": "npm run dev --workspace=services/api",
+    "dev:firetv": "npm run start:tv --workspace=apps/firetv"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
