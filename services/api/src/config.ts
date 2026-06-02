@@ -69,6 +69,11 @@ export const config = {
     baseUrl: process.env.NEWSAPI_BASE_URL ?? 'https://newsapi.org/v2',
   },
 
+  benzinga: {
+    apiKey: process.env.BENZINGA_API_KEY ?? '',
+    baseUrl: process.env.BENZINGA_BASE_URL ?? 'https://api.benzinga.com',
+  },
+
   cache: {
     stocksTtl: envInt('CACHE_TTL_STOCKS', 30),
     cryptoTtl: envInt('CACHE_TTL_CRYPTO', 30),
@@ -88,4 +93,8 @@ export function hasAlpacaCreds(): boolean {
 
 export function hasNewsAiCreds(): boolean {
   return Boolean(config.openai.apiKey || config.gemini.apiKey);
+}
+
+export function hasBenzinga(): boolean {
+  return Boolean(config.benzinga.apiKey);
 }

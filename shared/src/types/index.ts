@@ -57,6 +57,10 @@ export interface Article {
   publishedAt: string;
   /** Original article URL (optional, for source attribution). */
   url?: string;
+  /** Related ticker symbols (e.g. ["QCOM","MSFT"]) when the provider supplies them. */
+  tickers?: string[];
+  /** Thumbnail image URL when available (Benzinga). */
+  imageUrl?: string;
 }
 
 export type ArticleCategory = 'Stocks' | 'Crypto' | 'Economy' | 'Earnings' | 'General';
