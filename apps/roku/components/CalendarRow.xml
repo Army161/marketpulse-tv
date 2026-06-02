@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="CalendarRow" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/CalendarRow.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <field id="itemContent" type="node" onChange="onContentSet" />
+        <field id="width" type="float" onChange="onSizeSet" />
+        <field id="height" type="float" />
+        <field id="focusPercent" type="float" onChange="onFocusSet" />
+    </interface>
+
+    <children>
+        <Rectangle id="rowBg" color="0x111B2B00" width="1500" height="78" />
+        <Rectangle id="focusBar" color="0xF7C948FF" width="6" height="78" visible="false" />
+        <Label id="date"    color="0xF7C948FF" font="font:MediumBoldSystemFont" translation="[24,22]"  width="170" />
+        <Label id="ticker"  color="0xFFFFFFFF" font="font:MediumBoldSystemFont" translation="[210,22]" width="120" />
+        <Label id="company" color="0x94A3B8FF" font="font:MediumSystemFont"     translation="[340,24]" width="560" />
+        <Label id="eps"     color="0xCBD5E1FF" font="font:MediumSystemFont"     translation="[920,24]" width="260" />
+        <Label id="time"    color="0x64748BFF" font="font:SmallSystemFont"      translation="[1200,26]" width="290" />
+    </children>
+</component>

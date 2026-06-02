@@ -35,6 +35,11 @@ sub runFetch()
         m.top.sentiment = sentiment.primary
     end if
 
+    cal = HttpGetJson(base + "/api/calendar")
+    if cal <> invalid and cal.earnings <> invalid then
+        m.top.earnings = cal.earnings
+    end if
+
     m.top.lastUpdated = CurrentDateTimeString()
 end sub
 

@@ -25,6 +25,7 @@ sub init()
     m.cryptoList = m.top.findNode("cryptoList")
     m.stocksList = m.top.findNode("stocksList")
     m.newsPanel = m.top.findNode("newsPanel")
+    m.calendarList = m.top.findNode("calendarList")
 
     ' new page refs
     m.gauge2 = m.top.findNode("gauge2")
@@ -37,6 +38,7 @@ sub init()
         Crypto:    m.top.findNode("cryptoGroup")
         Stocks:    m.top.findNode("stocksGroup")
         News:      m.top.findNode("newsGroup")
+        Calendar:  m.top.findNode("calendarGroup")
         Sentiment: m.top.findNode("sentimentGroup")
         Settings:  m.top.findNode("settingsGroup")
         Upgrade:   m.top.findNode("upgradeGroup")
@@ -72,6 +74,7 @@ sub startFetch()
     m.fetcher.observeField("movers", "onMovers")
     m.fetcher.observeField("articles", "onArticles")
     m.fetcher.observeField("sentiment", "onSentiment")
+    m.fetcher.observeField("earnings", "onEarnings")
     m.fetcher.observeField("lastUpdated", "onLastUpdated")
     m.status.text = "Connecting to live market feed…"
     triggerRefresh()
@@ -166,6 +169,11 @@ function SentimentBlurb(v as Integer) as String
     return "Extreme Greed (" + Str(v).trim() + "). Euphoria dominates — historically a zone where markets can be due for a pullback."
 end function
 
+sub onEarnings()
+    e = m.fetcher.earnings
+    if e <> invalid then m.calendarList.callFunc("setData", e)
+end sub
+
 sub onLastUpdated()
     m.status.text = "Live market feed  •  updated " + m.fetcher.lastUpdated + "  •  auto-refresh 30s"
 end sub
@@ -188,6 +196,9 @@ sub onSectionChange()
         m.inContent = true
     else if name = "News"
         m.newsPanel.callFunc("setListFocus", true)
+        m.inContent = true
+    else if name = "Calendar"
+        m.calendarList.callFunc("setListFocus", true)
         m.inContent = true
     else
         m.nav.navFocus = true
@@ -245,6 +256,8 @@ sub refocusContent()
         m.stocksList.rowsFocus = true
     else if m.currentSection = "News"
         m.newsPanel.callFunc("setListFocus", true)
+    else if m.currentSection = "Calendar"
+        m.calendarList.callFunc("setListFocus", true)
     else
         m.nav.navFocus = true
     end if

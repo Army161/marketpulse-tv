@@ -130,6 +130,30 @@ export interface SentimentResponse {
   updatedAt: string;
 }
 
+/** An upcoming/recent earnings calendar entry (Benzinga). */
+export interface EarningsEvent {
+  /** Report date, YYYY-MM-DD. */
+  date: string;
+  ticker: string;
+  company: string;
+  /** Report time, e.g. "16:30:00" or "BMO"/"AMC". */
+  time?: string;
+  exchange?: string;
+  /** Estimated EPS (string from provider, kept as-is for display). */
+  epsEst?: string;
+  /** Actual EPS if reported. */
+  epsActual?: string;
+  /** EPS surprise as a fraction (e.g. 0.036 = +3.6%). */
+  surprisePct?: number;
+  /** Whether the report is in the future relative to "now". */
+  upcoming: boolean;
+}
+
+export interface CalendarResponse {
+  earnings: EarningsEvent[];
+  updatedAt: string;
+}
+
 /** Standard typed error response — never leak raw third-party errors to clients. */
 export interface ApiErrorResponse {
   error: {

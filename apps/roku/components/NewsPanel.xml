@@ -8,13 +8,11 @@
     </interface>
 
     <children>
-        <LabelList id="list"
-                   itemSize="[1500,84]"
-                   numRows="8"
-                   color="0xCBD5E1FF"
-                   focusedColor="0xF7C948FF"
-                   font="font:MediumSystemFont"
-                   drawFocusFeedback="true"
-                   focusBitmapUri="pkg:/images/focus_ring.9.png" />
+        <MarkupList id="list"
+                    itemComponentName="NewsRow"
+                    itemSize="[1520,150]"
+                    numRows="5"
+                    drawFocusFeedback="false"
+                    vertFocusAnimationStyle="floatingFocus" />
     </children>
 </component>

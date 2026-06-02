@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="NewsRow" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/NewsRow.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <field id="itemContent" type="node" onChange="onContentSet" />
+        <field id="width" type="float" onChange="onSizeSet" />
+        <field id="height" type="float" />
+        <field id="focusPercent" type="float" onChange="onFocusSet" />
+    </interface>
+
+    <children>
+        <Rectangle id="rowBg" color="0x111B2B00" width="1500" height="150" />
+        <Rectangle id="focusBar" color="0xF7C948FF" width="6" height="150" visible="false" />
+
+        <!-- thumbnail (Benzinga CDN, remote https) -->
+        <Poster id="thumb" width="168" height="104" translation="[20,22]"
+                loadDisplayMode="scaleToZoom" />
+
+        <!-- headline (up to 2 lines) -->
+        <Label id="headline" color="0xFFFFFFFF" font="font:MediumBoldSystemFont"
+               translation="[212,16]" width="1260" wrap="true" maxLines="2" />
+
+        <!-- ticker chips line (gold) -->
+        <Label id="tickers" color="0xF7C948FF" font="font:SmallBoldSystemFont"
+               translation="[212,94]" width="1000" />
+
+        <!-- source • category meta -->
+        <Label id="meta" color="0x64748BFF" font="font:SmallSystemFont"
+               translation="[212,122]" width="1000" />
+    </children>
+</component>

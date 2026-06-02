@@ -52,6 +52,12 @@
             <NewsPanel id="newsPanel" translation="[330,236]" />
         </Group>
 
+        <!-- ===== PAGE: CALENDAR ===== -->
+        <Group id="calendarGroup" visible="false">
+            <Label text="EARNINGS CALENDAR  •  YOUR TICKERS" color="0xFFFFFFFF" font="font:MediumBoldSystemFont" translation="[330,180]" />
+            <CalendarList id="calendarList" translation="[330,236]" />
+        </Group>
+
         <!-- ===== PAGE: SENTIMENT ===== -->
         <Group id="sentimentGroup" visible="false">
             <Label text="MARKET SENTIMENT" color="0xFFFFFFFF" font="font:MediumBoldSystemFont" translation="[330,180]" />

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="CalendarList" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/CalendarList.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <function name="setData" />
+        <function name="setListFocus" />
+    </interface>
+
+    <children>
+        <!-- column headers -->
+        <Label text="DATE"    color="0x64748BFF" font="font:SmallBoldSystemFont" translation="[24,0]" />
+        <Label text="TICKER"  color="0x64748BFF" font="font:SmallBoldSystemFont" translation="[210,0]" />
+        <Label text="COMPANY" color="0x64748BFF" font="font:SmallBoldSystemFont" translation="[340,0]" />
+        <Label text="EST EPS" color="0x64748BFF" font="font:SmallBoldSystemFont" translation="[920,0]" />
+        <Label text="REPORTS" color="0x64748BFF" font="font:SmallBoldSystemFont" translation="[1200,0]" />
+
+        <MarkupList id="list"
+                    itemComponentName="CalendarRow"
+                    itemSize="[1520,78]"
+                    numRows="8"
+                    translation="[0,40]"
+                    drawFocusFeedback="false"
+                    vertFocusAnimationStyle="floatingFocus" />
+    </children>
+</component>

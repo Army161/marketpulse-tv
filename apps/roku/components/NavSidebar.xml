@@ -15,8 +15,8 @@
         <MarkupList id="list"
                     itemComponentName="NavItem"
                     itemSize="[300,84]"
-                    numRows="6"
-                    translation="[0,200]"
+                    numRows="8"
+                    translation="[0,170]"
                     drawFocusFeedback="false" />
     </children>
 </component>
