@@ -181,28 +181,43 @@ end sub
 ' ---------- Section switching ----------
 sub onSectionChange()
     name = m.nav.selectedSection
-    if name = invalid or m.groups[name] = invalid then return
-    for each key in m.groups
-        m.groups[key].visible = (key = name)
-    end for
-    m.currentSection = name
+    if name = invalid or name = "" then return
 
-    ' Move focus into the section's list if it has one.
-    if name = "Crypto"
+    targetGroup = m.groups[name]
+    if targetGroup = invalid
+        print "[Dashboard] unknown section: " + name
+        return
+    end if
+
+    ' BrightScript "for each x in AA" gives VALUES not keys.
+    ' Hide all groups explicitly by name to avoid that trap.
+    m.groups["Home"].visible      = (name = "Home")
+    m.groups["Crypto"].visible    = (name = "Crypto")
+    m.groups["Stocks"].visible    = (name = "Stocks")
+    m.groups["News"].visible      = (name = "News")
+    m.groups["Calendar"].visible  = (name = "Calendar")
+    m.groups["Sentiment"].visible = (name = "Sentiment")
+    m.groups["Settings"].visible  = (name = "Settings")
+    m.groups["Upgrade"].visible   = (name = "Upgrade")
+
+    m.currentSection = name
+    m.inContent = false
+
+    ' Route focus with guards on every node ref.
+    if name = "Crypto" and m.cryptoList <> invalid
         m.cryptoList.rowsFocus = true
         m.inContent = true
-    else if name = "Stocks"
+    else if name = "Stocks" and m.stocksList <> invalid
         m.stocksList.rowsFocus = true
         m.inContent = true
-    else if name = "News"
+    else if name = "News" and m.newsPanel <> invalid
         m.newsPanel.callFunc("setListFocus", true)
         m.inContent = true
-    else if name = "Calendar"
+    else if name = "Calendar" and m.calendarList <> invalid
         m.calendarList.callFunc("setListFocus", true)
         m.inContent = true
     else
-        m.nav.navFocus = true
-        m.inContent = false
+        if m.nav <> invalid then m.nav.navFocus = true
     end if
 end sub
 
@@ -250,16 +265,16 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
 end function
 
 sub refocusContent()
-    if m.currentSection = "Crypto"
+    if m.currentSection = "Crypto" and m.cryptoList <> invalid
         m.cryptoList.rowsFocus = true
-    else if m.currentSection = "Stocks"
+    else if m.currentSection = "Stocks" and m.stocksList <> invalid
         m.stocksList.rowsFocus = true
-    else if m.currentSection = "News"
+    else if m.currentSection = "News" and m.newsPanel <> invalid
         m.newsPanel.callFunc("setListFocus", true)
-    else if m.currentSection = "Calendar"
+    else if m.currentSection = "Calendar" and m.calendarList <> invalid
         m.calendarList.callFunc("setListFocus", true)
     else
-        m.nav.navFocus = true
+        if m.nav <> invalid then m.nav.navFocus = true
     end if
 end sub
 
