@@ -1,13 +1,29 @@
 # MarketPulse TV — HANDOFF (read this FIRST in a new session)
 
-_Last updated: 2026-06-02 (build 00007 / v2.2)_
+_Last updated: 2026-06-03 (build 00009 / v2.2 — section-nav bug fixed + submission polish)_
 
 This doc + `MEMORY.md` + `docs/roku-v2/PLAN-NEXT.md` carry full context across
 sessions. Read all three before touching anything.
 
 ---
 
-## 🔴 TOP PRIORITY BUG (fix this first) — Section navigation shows empty pages
+## ✅ TOP-PRIORITY BUG IS FIXED — Section navigation (was empty pages)
+
+**Status:** Fix landed in build 00008 (commit `1ee1301`). Build 00009 adds
+submission polish (Settings build string, brand-styled Roku icons at correct
+dimensions, updated submission docs). Code clean, BrighterScript validates,
+device launched 00008 with no console errors. **Awaiting user verification of all
+8 nav sections on the actual remote** (CURRENT-BUG.md has the checklist).
+
+### Root cause (confirmed)
+BrightScript `for each key in AssocArray` iterates **VALUES not keys**. Original
+visibility loop `m.groups[key]` was indexing by node refs → `invalid` for every
+key → every group hidden. Replaced with explicit per-section assignments + guards
+on every `callFunc`.
+
+---
+
+## Original bug detail (pre-fix, kept for context)
 
 ### Symptom (confirmed on device, build 00007)
 - Home page renders correctly on launch (gainers/losers, gauge, headlines, chyron).
@@ -84,10 +100,11 @@ Renders UI at **720p** (1280×720) — design in FHD (1920×1080), ship ≤720p 
 
 | Surface | State |
 |---|---|
-| Backend (Vercel) | ✅ LIVE — all endpoints, real data, cached |
-| Roku channel | ⚠️ v2.2 build 00007 sideloaded; **section-nav bug (above)** |
+| Backend (Vercel) | ✅ LIVE — all 7 endpoints + /privacy at 200 (verified 2026-06-03) |
+| Roku channel | ✅ v2.2 build 00009 ready; section-nav fixed; icons at Roku-spec dims |
 | Fire TV (RN/TS) | ✅ Code complete, typechecks; NO native APK yet |
 | Shared types | ✅ Single source in `shared/src/types` |
+| Roku submission | 🟡 Ready for `genkey`/Package (HUMAN-only). See `docs/roku-submission/` |
 
 ### Data providers (all wired in backend, keys in `.env` + Vercel env vars)
 - **Alpaca** — stocks (20 tickers). Live keys.

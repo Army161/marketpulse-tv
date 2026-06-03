@@ -4,16 +4,21 @@ Owner: 👤 (a designer/tool must produce the branded artwork; current files are
 solid-color placeholders that will fail Roku's quality review).
 
 ## Channel Focus Icons (REQUIRED)
-Roku's focus-icon dimensions — **these correct the wrong values that were in
-the original `docs/store-submission.md`**:
+Roku's focus-icon dimensions:
 
-| Manifest key | Resolution | Correct size | Current placeholder | Status |
+| Manifest key | Resolution | Required size | Current | Status |
 |---|---|---|---|---|
-| `mm_icon_focus_sd`  | SD  | **248 × 140** | 540 × 405 | ❌ wrong size + placeholder |
-| `mm_icon_focus_hd`  | HD  | **290 × 218** | 336 × 210 | ❌ wrong size + placeholder |
-| `mm_icon_focus_fhd` | FHD | **540 × 405** | 504 × 284 | ❌ wrong size + placeholder |
+| `mm_icon_focus_sd`  | SD  | **248 × 140** | 248 × 140 | ✅ size OK (brand auto-gen) |
+| `mm_icon_focus_hd`  | HD  | **290 × 218** | 290 × 218 | ✅ size OK (brand auto-gen) |
+| `mm_icon_focus_fhd` | FHD | **540 × 405** | 540 × 405 | ✅ size OK (brand auto-gen) |
 
 Format: PNG, no transparency required, full-bleed branded artwork.
+
+> Auto-generated art (`scripts/generate-roku-icons.py`) uses the Midnight palette,
+> gold MARKETPULSE wordmark, and a candle-chart accent row. Passes dimension
+> validation and looks coherent with the in-app design system. For PUBLIC-channel
+> Roku certification a designer-polished version is recommended — drop new files
+> at the same paths and repackage; no manifest change needed.
 
 ## Splash Screens (REQUIRED) — already correct size
 | Manifest key | Size | Current | Status |

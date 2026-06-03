@@ -287,7 +287,7 @@ sub buildSettings()
         ["News", "NewsAPI + Gemini AI summaries"],
         ["Sentiment", "Alternative.me Fear & Greed"],
         ["Theme", "MarketPulse Dark — Glass"],
-        ["Version", "1.0  (build 00005)"],
+        ["Version", "1.0  (build 00009)"],
         ["Privacy", "marketpulse-tv.vercel.app/privacy"]
     ]
     y = 0

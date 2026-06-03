@@ -29,13 +29,20 @@ Quick-reference memory. Pair with `HANDOFF.md` (full context) and
 - Roku: one Scene + page Groups + nav router. Network ONLY in DataFetcher Task node.
 
 ## Current build
-- Roku manifest build_version = 00007 (bump every sideload).
+- Roku manifest build_version = 00009 (bump every sideload).
 - Roku device renders UI at 720p; design space is FHD 1920×1080.
 
-## Active bug (see HANDOFF.md for full detail + fix plan)
-- Section nav shows EMPTY pages (even static titles missing) + BACK/Home dead.
-  Root cause hypothesis: runtime error in Dashboard.brs `onSectionChange`.
-  Fix: guard node refs before callFunc; capture console during a nav press.
+## Resolved bugs
+- **Section-nav empty pages (build 00007 → fixed in 00008, current 00009).**
+  Root cause: BrightScript `for each key in AssocArray` iterates VALUES not keys
+  (unlike most langs). The visibility loop `m.groups[key]` was indexing AA by
+  node references → invalid → every group hidden. Fix: explicit per-section
+  visibility assignments + `<> invalid` guards on every callFunc. Code committed
+  (1ee1301); on-device verification of all 8 sections still pending user remote test.
+
+## BrightScript gotcha (DO NOT regress)
+- `for each x in AA` gives VALUES, not keys. Use `for each k in AA.Keys()` if
+  you need keys, or just enumerate the keys explicitly.
 
 ## Personality / working style the user wants
 - Direct, concise, no fluff. Build real working increments, verify on device,

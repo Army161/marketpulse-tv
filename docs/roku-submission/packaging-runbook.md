@@ -6,9 +6,10 @@ from a shell/CI. Follow in order.
 ## Prerequisites
 - Roku in **developer mode** (Home ×3, Up ×2, Right, Left, Right, Left, Right).
 - Dev web console reachable at `http://<roku-ip>/` (you have 192.168.1.80, pwd 2789).
-- The final build sideloaded (the current `dist/marketpulse-roku.zip`, build_version 00002).
-- Branded artwork already dropped into `apps/roku/images/` and re-sideloaded
-  (do the art BEFORE signing — see asset-checklist.md).
+- The final build sideloaded (the current `dist/marketpulse-roku.zip`, build_version 00009).
+- Branded artwork already in `apps/roku/images/` at correct Roku-spec dimensions
+  (regenerated 2026-06-03 via `scripts/generate-roku-icons.py` — see asset-checklist.md).
+  Real designer art can be swapped in using the same filenames before final package.
 
 ## Step 1 — Generate the signing key (device-bound, ONE TIME)
 Roku signing keys are created **on the device** and are unique to it. Telnet to
@@ -58,8 +59,14 @@ genkey output from Step 1 matters. A different key = Roku treats it as a
 different channel.
 
 ## Current readiness
-- ✅ Code clean, on-device validated, build_version bumped to 00002
-- ✅ Privacy policy live at /privacy
-- ❌ Branded artwork (blocks quality review)
-- ❌ genkey / package (device-bound, not yet done)
+- ✅ Code clean, BrighterScript validates, build_version 00009
+- ✅ Section-nav bug fixed (build 00008+) — pending final user verification on remote
+- ✅ Privacy policy live at /privacy (200 OK)
+- ✅ All backend endpoints live (200 OK): health, stocks, crypto, movers, news, sentiment, calendar
+- ✅ Icon + splash assets at correct Roku-spec dimensions (auto-generated brand art;
+     swap with designer art before public-channel submission for best review score)
+- ❌ genkey / package (device-bound, not yet done — Step 1 below)
 - ❌ Roku developer account (not yet created)
+- ❌ Public channel review screenshots (capture 3+ via dev web UI Screenshot tool)
+- ⚠️  Designer-grade artwork RECOMMENDED for public certification (auto-generated
+     art passes dimension validation but may not pass aesthetic review for paid tier)

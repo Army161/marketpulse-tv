@@ -9,27 +9,36 @@ MarketPulse TV
 Live markets, crypto & AI news for your TV.
 
 ## Long Description
-MarketPulse TV turns your television into an always-on financial dashboard.
-Watch live stock prices, real-time cryptocurrency quotes, top market movers, and
-AI-summarized financial news — all on the big screen, designed for a lean-back,
-glance-and-go experience.
+MarketPulse TV turns your television into an always-on financial command center.
+Live stock prices, real-time cryptocurrency quotes, top market movers, AI-summarized
+news from Benzinga, the CNN Fear & Greed sentiment gauge, and the upcoming earnings
+calendar — all on the big screen, designed for a lean-back, glance-and-go experience.
 
-Features:
-- Live stock ticker with color-coded gains and losses
-- Top Movers — the day's biggest gainers and losers at a glance
-- Crypto board — Bitcoin, Ethereum, and other leading coins with 24h change
-- AI News — concise, AI-summarized headlines from across the financial world
-- Auto-refreshing data, no interaction required
+Eight curated pages, glassmorphism design, premium Midnight color palette:
 
-Built for investors and crypto holders who want their markets visible without
-picking up a phone.
+- HOME — top gainers, top losers, Fear & Greed gauge, top headlines, live ticker
+- CRYPTO — top 20 cryptocurrencies with 24h change (Bitcoin, Ethereum + leaders)
+- STOCKS — major U.S. equities, color-coded gains/losses, selectable detail view
+- NEWS — Benzinga newswire with tickers, thumbnails, and category chips
+- CALENDAR — upcoming earnings, ticker, company, estimated EPS, before/after market
+- SENTIMENT — Fear & Greed index with explanation and historical context
+- SETTINGS — data sources, refresh interval, theme, privacy
+- UPGRADE — Free / Premium / Pro tiers (subscription monetization)
+
+Live data via Alpaca Markets (equities), CoinGecko (crypto), Benzinga (news +
+earnings calendar), and Alternative.me (sentiment). Auto-refreshes every 30s.
+A scrolling bottom chyron rotates through 40 of the day's most-watched assets.
+
+Built for investors, traders, analysts, and anyone who wants markets visible
+without picking up a phone.
 
 ## Category
 News & Weather  (alternate: Lifestyle)
 
 ## Keywords
 stocks, crypto, bitcoin, market, finance, news, ticker, investing, ethereum,
-dashboard
+dashboard, earnings, sentiment, fear and greed, benzinga, live, real-time,
+trading, watchlist, premarket, aftermarket, dividends, AI
 
 ## Content Rating Guidance
 - Contains no violence, mature, or objectionable content.
@@ -45,8 +54,14 @@ https://marketpulse-tv.vercel.app/privacy
 ## Support Contact
 (Provide a reachable email when creating the account — Roku requires one.)
 
-## Monetization (for when premium ships)
-- Free tier: ad-supported via Roku Advertising Framework (RAF).
-- Premium: $9.99/mo single SKU `marketpulse_premium_monthly` via Roku Billing.
-- Not required for an initial Private-channel publish; the app runs fully on the
-  free tier today.
+## Monetization
+- **Free tier** — ad-supported via Roku Advertising Framework (RAF).
+  60-second data refresh, basic ticker, full ad inventory.
+- **Premium** — $9.99/mo, SKU `marketpulse_premium_monthly` via Roku Billing.
+  10-second refresh, full markets data, AI news feed, ad-free.
+- **Pro** — $14.99/mo, SKU `marketpulse_pro_monthly`.
+  Everything in Premium + portfolio tracker, custom watchlist, price alerts.
+
+Not required for an initial Private-channel publish; the app runs fully on the
+free tier today. Subscription SKUs must be registered in the Roku portal
+(Billing tab) before they appear on-device.

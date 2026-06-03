@@ -1,8 +1,31 @@
 # CURRENT BUG — Section navigation shows empty pages
 
-**Priority: P0 — Fix this before anything else.**
-**Build affected:** 00007 (latest sideloaded)
-**Status:** Active on device, not fixed.
+**Priority: P0 — FIXED in build 00008 (code), bumped to 00009 (with submission polish).**
+**Build affected:** 00007 had the bug; 00008 contains the fix; 00009 is current.
+**Status:** ✅ Code fix landed (commit `1ee1301`). Build 00008 launched cleanly on
+device with no console errors. **Pending final on-remote verification by the user
+across all 8 nav sections** (see checklist at bottom of this file).
+
+## Root cause (confirmed)
+BrightScript's `for each key in <AssocArray>` iterates over **VALUES**, not keys
+(opposite of most languages). The original visibility loop
+`for each key in m.groups: m.groups[key].visible = (key = name)` was therefore
+calling `m.groups[<roSGNode>]` — which returns `invalid` for every iteration —
+so every group ended up effectively hidden. Result: empty blue page on any nav.
+
+## Fix applied (`apps/roku/components/Dashboard.brs`)
+- Replaced the for-each visibility loop with **explicit per-section visibility
+  assignments** by name (Home/Crypto/Stocks/News/Calendar/Sentiment/Settings/Upgrade).
+- Added `<> invalid` guards on every `callFunc` and field-set in `onSectionChange`
+  and `refocusContent`.
+- Bailout-early on unknown section names.
+
+## Remaining: user verification on real remote
+(Original symptom + diagnosis preserved below for context.)
+
+---
+
+## Original symptom (pre-fix, build 00007)
 
 ---
 
