@@ -10,8 +10,8 @@
     <children>
         <MarkupList id="list"
                     itemComponentName="NewsRow"
-                    itemSize="[1520,150]"
-                    numRows="5"
+                    itemSize="[1520,172]"
+                    numRows="4"
                     drawFocusFeedback="false"
                     vertFocusAnimationStyle="floatingFocus" />
     </children>

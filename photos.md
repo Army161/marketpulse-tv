@@ -110,6 +110,27 @@ for that section (the old bug showed EMPTY BLUE pages).
 
 ---
 
+## Batch 4 (2 photos) — build 00010 polish verification
+
+Sideloaded build 00010 with two layout fixes (News card height/reflow + pricing-card
+feature spacing). User confirmed both look good on the TV (9:07 am).
+
+### Photo 11 — News (build 00010, 9:07 am)
+- Now 4 cards visible (was 5, with the 5th hidden behind the chyron).
+- 2-line headlines ("Hitachi, Intel Announce Partnership... Other S...", "Futurum CEO
+  Daniel Newman Drops Reality Check On AI's Trillion-Dollar Bet...") now clear the gold
+  ticker-chip line below them — no overlap.
+- Cards with thumbnails (AbbVie, Micron, Futurum) and without (Hitachi) both render clean.
+- **Verdict: News overlap FIXED** (itemSize 150→172, numRows 5→4, tickers y94→104, meta y122→134).
+
+### Photo 12 — Upgrade (build 00010, 9:07 am)
+- FREE / PREMIUM / PRO cards. Each bullet on its own line with clear spacing.
+- PRO "Everything in Premium" wraps to 2 lines but no longer overlaps "Portfolio tracker"
+  below it; PREMIUM bullets ("Full markets data", "AI news feed") all separated.
+- **Verdict: Pricing-card overlap FIXED** (feature step 64→84, label width 300→320).
+
+---
+
 ## Checklist status (from CURRENT-BUG.md, 9 points)
 
 | # | Item | Status |
@@ -130,7 +151,6 @@ on device (build 00009), 2026-06-05.**
 Optional follow-ups not yet captured: Stocks row→overlay→BACK, BACK→Home round-trip.
 Two cosmetic polish items remain (see below) — not blocking, nav fully works.
 
-## Polish items spotted (defer until nav bug closed)
-- Upgrade page: pricing-card body text line-height/overlap (PRO + PREMIUM cards).
-- News page: thumbnail-less cards overlap headline text with ticker-chip line below
-  (variable card-height spacing issue).
+## Polish items — ✅ RESOLVED in build 00010 (user-confirmed on device, see Batch 4)
+- ~~Upgrade page: pricing-card body text line-height/overlap (PRO + PREMIUM cards).~~ FIXED.
+- ~~News page: thumbnail-less cards overlap headline text with ticker-chip line below.~~ FIXED.

@@ -29,8 +29,9 @@ Quick-reference memory. Pair with `HANDOFF.md` (full context) and
 - Roku: one Scene + page Groups + nav router. Network ONLY in DataFetcher Task node.
 
 ## Current build
-- Roku manifest build_version = 00009 (bump every sideload).
+- Roku manifest build_version = 00010 (bump every sideload).
 - Roku device renders UI at 720p; design space is FHD 1920×1080.
+- Roku dev device friendly name: "War and Rock" (192.168.1.80).
 
 ## Resolved bugs
 - **Section-nav empty pages (build 00007 → fixed in 00008, current 00009).**
@@ -46,11 +47,12 @@ Quick-reference memory. Pair with `HANDOFF.md` (full context) and
   focus → confirms the setListFocus/alwaysNotify fix. See `photos.md` for the 10-frame
   log. Not separately captured (low risk): Stocks row→overlay→BACK, BACK→Home round-trip.
 
-## Known visual polish items (not bugs, defer until nav bug closed)
-- Upgrade page: pricing-card body text has line-height/overlap (PRO + PREMIUM cards)
-  on the real TV at 720p. Render only, nav works. Found 2026-06-05, build 00009.
-- News page: cards WITHOUT a thumbnail overlap headline text with the ticker-chip
-  line below (variable card-height spacing). Found 2026-06-05, build 00009.
+## Visual polish items — ✅ FIXED in build 00010 (user-confirmed on device 2026-06-05)
+- Upgrade pricing cards: feature step 64→84px, label width 300→320 (Dashboard.brs
+  buildPricing). 2-line features no longer overlap the next bullet.
+- News cards: itemSize 150→172, numRows 5→4 (NewsPanel.xml); tickers y94→104, meta
+  y122→134, rowBg/focusBar 150→172 (NewsRow.xml/.brs). 2-line headlines clear the
+  ticker line. Root cause for both: fixed vertical step assumed single-line text.
 
 ## BrightScript gotcha (DO NOT regress)
 - `for each x in AA` gives VALUES, not keys. Use `for each k in AA.Keys()` if

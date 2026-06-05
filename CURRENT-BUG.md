@@ -8,9 +8,11 @@ Stocks, News, Calendar, Sentiment, Settings, Upgrade — chyron scrolling throug
 no empty blue pages. Calendar (highest-risk, new in v2.2) renders earnings rows with
 focus. Full 10-frame verification log: `photos.md`.
 
-Two cosmetic polish items found during verification (NOT this bug, deferred):
-- Upgrade pricing cards: body-text line-height/overlap.
-- News cards without a thumbnail: headline overlaps the ticker-chip line.
+Two cosmetic polish items found during verification (NOT this bug) — ✅ FIXED in
+build 00010, user-confirmed on device 2026-06-05:
+- Upgrade pricing cards: body-text line-height/overlap → feature step 64→84, width 300→320.
+- News cards without a thumbnail: headline overlaps ticker line → row 150→172, 4 rows,
+  internals reflowed. See `photos.md` Batch 4.
 
 ## Root cause (confirmed)
 BrightScript's `for each key in <AssocArray>` iterates over **VALUES**, not keys

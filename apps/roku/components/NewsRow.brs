@@ -25,18 +25,20 @@ sub onContentSet()
 
     m.meta.text = c.metaText
 
-    ' thumbnail: only show if a URL is present; otherwise hide and pull text left
+    ' thumbnail: only show if a URL is present; otherwise hide and pull text left.
+    ' y-positions give a 2-line headline (ends ~y=94) clearance above the ticker
+    ' line (y=104); meta at y=134 fits inside the 172px row.
     if c.imageUri <> invalid and c.imageUri <> ""
         m.thumb.uri = c.imageUri
         m.thumb.visible = true
-        m.headline.translation = [212, 16]
-        m.tickers.translation = [212, 94]
-        m.meta.translation = [212, 122]
+        m.headline.translation = [212, 14]
+        m.tickers.translation = [212, 104]
+        m.meta.translation = [212, 134]
     else
         m.thumb.visible = false
-        m.headline.translation = [24, 16]
-        m.tickers.translation = [24, 94]
-        m.meta.translation = [24, 122]
+        m.headline.translation = [24, 14]
+        m.tickers.translation = [24, 104]
+        m.meta.translation = [24, 134]
     end if
 end sub
 

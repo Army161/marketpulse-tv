@@ -336,17 +336,19 @@ sub buildPricing()
         pr.color = m.theme.colors.text
         pr.translation = [36, 120]
 
-        fy = 210
+        ' step of 84 leaves room for a feature that wraps to 2 lines (e.g.
+        ' "Everything in Premium") without colliding with the next feature.
+        fy = 206
         for each f in t.feats
             fl = card.createChild("Label")
             fl.text = "•  " + f
             fl.font = "font:MediumSystemFont"
             fl.color = m.theme.colors.textMuted
             fl.translation = [36, fy]
-            fl.width = 300
+            fl.width = 320
             fl.wrap = true
             fl.maxLines = 2
-            fy = fy + 64
+            fy = fy + 84
         end for
         x = x + 400
     end for
