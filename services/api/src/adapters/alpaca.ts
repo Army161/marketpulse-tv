@@ -5,12 +5,22 @@ import { Errors } from '../lib/errors';
 import { logger } from '../lib/logger';
 import { MOCK_STOCKS } from './mockData';
 
-/** Top-20 large caps we surface on the dashboard ticker + markets screen. */
+/** Top-40 tickers surfaced on the ticker, stocks screen, and movers. */
 export const DEFAULT_SYMBOLS = [
-  'AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN',
-  'META', 'TSLA', 'JPM', 'V', 'INTC',
-  'AMD', 'NFLX', 'DIS', 'BA', 'WMT',
-  'KO', 'XOM', 'BAC', 'PFE', 'CSCO',
+  // Mega-cap tech
+  'AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA', 'AMD', 'INTC', 'CSCO',
+  // Finance
+  'JPM', 'BAC', 'V', 'MA', 'GS',
+  // Consumer / retail
+  'WMT', 'AMZN', 'DIS', 'NFLX', 'KO',
+  // Energy / industrials
+  'XOM', 'CVX', 'BA', 'CAT', 'GE',
+  // Healthcare
+  'PFE', 'JNJ', 'UNH', 'MRNA', 'ABBV',
+  // High-beta / growth
+  'PLTR', 'COIN', 'SQ', 'UBER', 'SPOT',
+  // Meme / retail favorites
+  'GME', 'AMC', 'RIVN', 'HOOD', 'SOFI',
 ];
 
 interface AlpacaSnapshotResponse {

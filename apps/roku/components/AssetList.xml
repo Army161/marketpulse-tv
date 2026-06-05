@@ -14,7 +14,7 @@
         <MarkupList id="list"
                     itemComponentName="AssetRow"
                     itemSize="[820,64]"
-                    numRows="9"
+                    numRows="11"
                     drawFocusFeedback="false"
                     vertFocusAnimationStyle="floatingFocus" />
     </children>

@@ -10,7 +10,7 @@ sub runFetch()
     base = m.top.baseUrl
     if base = invalid or base = "" then return
 
-    coins = HttpGetJson(base + "/api/crypto?limit=20")
+    coins = HttpGetJson(base + "/api/crypto?limit=100")
     if coins <> invalid and coins.coins <> invalid then
         m.top.coins = coins.coins
     end if
