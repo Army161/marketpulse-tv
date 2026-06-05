@@ -1,10 +1,16 @@
 # CURRENT BUG — Section navigation shows empty pages
 
-**Priority: P0 — FIXED in build 00008 (code), bumped to 00009 (with submission polish).**
+**Priority: P0 — ✅ CLOSED 2026-06-05. Fixed in 00008, verified on device in 00009.**
 **Build affected:** 00007 had the bug; 00008 contains the fix; 00009 is current.
-**Status:** ✅ Code fix landed (commit `1ee1301`). Build 00008 launched cleanly on
-device with no console errors. **Pending final on-remote verification by the user
-across all 8 nav sections** (see checklist at bottom of this file).
+**Status:** ✅ RESOLVED. Code fix landed (commit `1ee1301`). All 8 nav sections
+verified rendering real content on the actual Roku remote (build 00009): Home, Crypto,
+Stocks, News, Calendar, Sentiment, Settings, Upgrade — chyron scrolling throughout,
+no empty blue pages. Calendar (highest-risk, new in v2.2) renders earnings rows with
+focus. Full 10-frame verification log: `photos.md`.
+
+Two cosmetic polish items found during verification (NOT this bug, deferred):
+- Upgrade pricing cards: body-text line-height/overlap.
+- News cards without a thumbnail: headline overlaps the ticker-chip line.
 
 ## Root cause (confirmed)
 BrightScript's `for each key in <AssocArray>` iterates over **VALUES**, not keys

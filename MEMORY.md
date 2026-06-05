@@ -38,7 +38,19 @@ Quick-reference memory. Pair with `HANDOFF.md` (full context) and
   (unlike most langs). The visibility loop `m.groups[key]` was indexing AA by
   node references → invalid → every group hidden. Fix: explicit per-section
   visibility assignments + `<> invalid` guards on every callFunc. Code committed
-  (1ee1301); on-device verification of all 8 sections still pending user remote test.
+  (1ee1301).
+  **On-device verification 2026-06-05 (build 00009): ALL 8/8 sections PASS — CLOSED.**
+  Confirmed rendering real content (no empty blue) on the actual Roku remote: Home,
+  Crypto, Stocks, News, Calendar, Sentiment, Settings, Upgrade + chyron scrolling in
+  every frame. Calendar (highest-risk, new in v2.2) renders earnings rows with list
+  focus → confirms the setListFocus/alwaysNotify fix. See `photos.md` for the 10-frame
+  log. Not separately captured (low risk): Stocks row→overlay→BACK, BACK→Home round-trip.
+
+## Known visual polish items (not bugs, defer until nav bug closed)
+- Upgrade page: pricing-card body text has line-height/overlap (PRO + PREMIUM cards)
+  on the real TV at 720p. Render only, nav works. Found 2026-06-05, build 00009.
+- News page: cards WITHOUT a thumbnail overlap headline text with the ticker-chip
+  line below (variable card-height spacing). Found 2026-06-05, build 00009.
 
 ## BrightScript gotcha (DO NOT regress)
 - `for each x in AA` gives VALUES, not keys. Use `for each k in AA.Keys()` if
