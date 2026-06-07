@@ -29,9 +29,24 @@ Quick-reference memory. Pair with `HANDOFF.md` (full context) and
 - Roku: one Scene + page Groups + nav router. Network ONLY in DataFetcher Task node.
 
 ## Current build
-- Roku manifest build_version = 00010 (bump every sideload).
+- Roku manifest build_version = 00011 (bump every sideload). NOTE: 00011 is
+  packaged (dist ready) but NOT yet sideloaded — Roku was offline at build time.
 - Roku device renders UI at 720p; design space is FHD 1920×1080.
 - Roku dev device friendly name: "War and Rock" (192.168.1.80).
+
+## Phase 3a — AI Audio Anchor (built 2026-06-07)
+- Backend: `GET /api/brief` returns a Gemini-written 3-para spoken script from
+  live data (movers + Fear&Greed + Benzinga headlines); deterministic fallback
+  if Gemini fails. Verified live (both gemini + fallback paths seen). 30-min cache.
+- `adapters/tts.ts`: Google TTS (REST, API-key) → MP3 → Vercel Blob (`@vercel/blob`
+  `put()`), GATED by `hasTtsCreds()` → returns audioUrl:null until creds set.
+- Roku: "▶ Daily Brief" Button on Home (RIGHT focuses it, OK opens), new
+  `BriefOverlay` (script reader + `Audio` node), DataFetcher `brief` field.
+- Benzinga does NOT do voice. Pipeline = Benzinga (facts) → Gemini (script) →
+  Google TTS (audio). See API-KEYS.md "Phase 3a" for turn-on steps.
+- REMAINING (user-only): deploy backend (needs VERCEL_TOKEN) so /api/brief is
+  live; set GOOGLE_TTS_API_KEY + BLOB_READ_WRITE_TOKEN; power Roku + sideload
+  00011 + verify the button on the TV.
 
 ## Resolved bugs
 - **Section-nav empty pages (build 00007 → fixed in 00008, current 00009).**

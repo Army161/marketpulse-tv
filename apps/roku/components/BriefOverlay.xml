@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="BriefOverlay" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/BriefOverlay.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Theme.brs" />
+
+    <interface>
+        <function name="show" />
+        <function name="hide" />
+    </interface>
+
+    <children>
+        <!-- dim scrim over the whole screen -->
+        <Rectangle id="scrim" color="0x05070BF2" width="1920" height="1080" />
+        <!-- soft gold glow behind the frosted card -->
+        <Poster id="cardGlow" uri="pkg:/images/glow_gold.png" width="1340" height="780" translation="[290,150]" />
+        <!-- frosted glass card (9-patch) -->
+        <Poster id="card" uri="pkg:/images/glass_panel.9.png" width="1280" height="660" translation="[320,210]">
+            <Rectangle id="cardAccent" color="0xF7C948FF" width="1280" height="8" />
+            <Label id="title" text="DAILY MARKET BRIEF" color="0xFFFFFFFF"
+                   font="font:LargeBoldSystemFont" translation="[56,44]" />
+            <Label id="status" color="0xF7C948FF" font="font:MediumBoldSystemFont"
+                   translation="[56,128]" width="1160" />
+            <Label id="script" color="0xE2E8F0FF" font="font:MediumSystemFont"
+                   translation="[56,196]" width="1168" wrap="true" maxLines="11" />
+            <Label id="hint" text="Press BACK to close" color="0x64748BFF"
+                   font="font:SmallSystemFont" translation="[56,600]" />
+        </Poster>
+        <!-- audio player for the spoken brief (plays when audioUrl is present) -->
+        <Audio id="player" />
+    </children>
+</component>

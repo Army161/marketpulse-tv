@@ -21,12 +21,26 @@ This file documents WHICH providers are wired and WHERE keys live.
 Key starts with `bz.` (not `bz_.` — the underscore breaks auth, 401).
 Value in `.env`: `BENZINGA_API_KEY=bz.R7FDMOH5473CMO2OCMNVHTOKP3XKPVSH`
 
-## Future providers (Phase 3 — not yet wired)
+## Phase 3a — AI Audio Anchor (wired in code 2026-06-07, GATED until creds set)
+`/api/brief` is live and returns a Gemini-written 3-paragraph script today
+(`source:"gemini"`, with a deterministic `"fallback"` if Gemini is down).
+Audio synthesis is fully implemented but gated by `hasTtsCreds()` — set BOTH:
+
+| Provider | Env var(s) | Status | Used for |
+|---|---|---|---|
+| **Google Cloud TTS** | `GOOGLE_TTS_API_KEY` (+ optional `TTS_VOICE`, `TTS_LANGUAGE_CODE`) | ⬜ Needs key | Synthesize script → MP3 (REST, API-key auth) |
+| **Vercel Blob** | `BLOB_READ_WRITE_TOKEN` | ⬜ Needs token | Host the MP3 (public URL) via `@vercel/blob` `put()` |
+
+**Turn-on steps:**
+1. Google Cloud: enable the *Cloud Text-to-Speech API*, create an API key → `GOOGLE_TTS_API_KEY`.
+2. Vercel: create a Blob store, copy its read-write token → `BLOB_READ_WRITE_TOKEN`.
+3. Set BOTH in `.env` (local) **and** Vercel project env (production), then redeploy.
+4. `/api/brief` `audioUrl` flips from `null` to a real MP3 URL automatically — no code change.
+
+## Future providers (Phase 4 — not yet wired)
 | Provider | Purpose | User has account? |
 |---|---|---|
-| **Google Cloud TTS** | AI audio anchor (reads market brief aloud) | ✅ Yes |
 | **HeyGen** | AI avatar video anchor (Phase 4) | ✅ Yes |
-| **Vercel Blob** | Hosting MP3/video URLs from TTS/HeyGen | Needs setup |
 
 ## Alpaca base URL note
 Alpaca paper trading keys work for data. The DATA endpoint (what we use) is:

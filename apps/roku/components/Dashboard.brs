@@ -17,6 +17,8 @@ sub init()
     m.fngMini = m.top.findNode("fngMini")
     m.liveDot = m.top.findNode("liveDot")
     m.overlay = m.top.findNode("overlay")
+    m.briefBtn = m.top.findNode("briefBtn")
+    m.briefOverlay = m.top.findNode("briefOverlay")
 
     m.gainers = m.top.findNode("gainers")
     m.losers = m.top.findNode("losers")
@@ -47,6 +49,8 @@ sub init()
     m.currentSection = "Home"
     m.inContent = false
     m.overlayOpen = false
+    m.briefOpen = false
+    m.brief = invalid
     m.coins = []
     m.stocks = []
 
@@ -57,6 +61,7 @@ sub init()
     m.nav.observeField("selectedSection", "onSectionChange")
     m.cryptoList.observeField("selectedPayload", "onCryptoSelected")
     m.stocksList.observeField("selectedPayload", "onStockSelected")
+    if m.briefBtn <> invalid then m.briefBtn.observeField("buttonSelected", "onBriefPressed")
 
     startFetch()
     startTimers()
@@ -75,6 +80,7 @@ sub startFetch()
     m.fetcher.observeField("articles", "onArticles")
     m.fetcher.observeField("sentiment", "onSentiment")
     m.fetcher.observeField("earnings", "onEarnings")
+    m.fetcher.observeField("brief", "onBrief")
     m.fetcher.observeField("lastUpdated", "onLastUpdated")
     m.status.text = "Connecting to live market feed…"
     triggerRefresh()
@@ -174,6 +180,10 @@ sub onEarnings()
     if e <> invalid then m.calendarList.callFunc("setData", e)
 end sub
 
+sub onBrief()
+    m.brief = m.fetcher.brief
+end sub
+
 sub onLastUpdated()
     m.status.text = "Live market feed  •  updated " + m.fetcher.lastUpdated + "  •  auto-refresh 30s"
 end sub
@@ -236,12 +246,25 @@ sub openOverlay(payload as Object)
     m.overlayOpen = true
 end sub
 
+' Daily Brief button -> open the AI brief overlay. show() handles a not-yet-
+' loaded brief gracefully, so this is safe even before the first fetch lands.
+sub onBriefPressed()
+    if m.briefOverlay = invalid then return
+    m.briefOverlay.callFunc("show", m.brief)
+    m.briefOpen = true
+end sub
+
 ' ---------- Keys ----------
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if not press then return false
 
     if key = "back"
-        if m.overlayOpen
+        if m.briefOpen
+            if m.briefOverlay <> invalid then m.briefOverlay.callFunc("hide")
+            m.briefOpen = false
+            refocusContent()
+            return true
+        else if m.overlayOpen
             m.overlay.visible = false
             m.overlayOpen = false
             refocusContent()
@@ -254,8 +277,17 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         return false   ' from sidebar/main -> let Roku exit the channel
     end if
 
-    ' LEFT from a content list returns to the sidebar (nice-to-have).
-    if key = "left" and m.inContent and not m.overlayOpen
+    ' RIGHT from the Home sidebar moves focus onto the Daily Brief button.
+    if key = "right" and m.currentSection = "Home" and not m.inContent and not m.overlayOpen and not m.briefOpen
+        if m.briefBtn <> invalid
+            m.briefBtn.setFocus(true)
+            m.inContent = true
+            return true
+        end if
+    end if
+
+    ' LEFT from a content list (or the brief button) returns to the sidebar.
+    if key = "left" and m.inContent and not m.overlayOpen and not m.briefOpen
         m.nav.navFocus = true
         m.inContent = false
         return true
@@ -273,6 +305,8 @@ sub refocusContent()
         m.newsPanel.callFunc("setListFocus", true)
     else if m.currentSection = "Calendar" and m.calendarList <> invalid
         m.calendarList.callFunc("setListFocus", true)
+    else if m.currentSection = "Home" and m.briefBtn <> invalid
+        m.briefBtn.setFocus(true)
     else
         if m.nav <> invalid then m.nav.navFocus = true
     end if
@@ -287,7 +321,7 @@ sub buildSettings()
         ["News", "NewsAPI + Gemini AI summaries"],
         ["Sentiment", "Alternative.me Fear & Greed"],
         ["Theme", "MarketPulse Dark — Glass"],
-        ["Version", "1.0  (build 00009)"],
+        ["Version", "1.0  (build 00011)"],
         ["Privacy", "marketpulse-tv.vercel.app/privacy"]
     ]
     y = 0

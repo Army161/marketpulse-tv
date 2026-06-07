@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { put } from '@vercel/blob';
 import { config, hasTtsCreds } from '../config';
 import { logger } from '../lib/logger';
 
@@ -12,10 +13,8 @@ export interface SynthResult {
  * the public URL. Returns null (graceful) when TTS creds are absent — the brief
  * endpoint then serves a script-only response (audioUrl: null).
  *
- * To "turn on": set GOOGLE_TTS_API_KEY + BLOB_READ_WRITE_TOKEN in .env. No code
- * change required. NOTE: the Google synth call uses the stable v1 REST contract;
- * the Vercel Blob PUT contract is the one spot to re-validate against current
- * Vercel docs when you first wire real creds.
+ * To "turn on": set GOOGLE_TTS_API_KEY + BLOB_READ_WRITE_TOKEN in .env (and in
+ * Vercel project env for production). No code change required.
  */
 export async function synthesizeBrief(text: string): Promise<SynthResult | null> {
   if (!hasTtsCreds()) return null;
@@ -50,25 +49,18 @@ async function googleSynthesize(text: string): Promise<Buffer> {
   return Buffer.from(b64, 'base64');
 }
 
-/** Upload MP3 bytes to Vercel Blob (public) and return the hosted URL. */
+/**
+ * Upload MP3 bytes to Vercel Blob (public) and return the hosted URL.
+ * Deterministic pathname + allowOverwrite means the brief audio replaces the
+ * previous file each cycle instead of accumulating orphaned blobs.
+ */
 async function uploadMp3(bytes: Buffer): Promise<string> {
-  // Random suffix guarantees the PUT always succeeds (no overwrite race). The
-  // brief regenerates on the cache TTL, so a periodic blob-cleanup is a future
-  // refinement, not a correctness issue.
-  const pathname = 'briefs/market-brief.mp3';
-  const resp = await axios.put(`${config.blob.baseUrl}/${pathname}`, bytes, {
-    headers: {
-      authorization: `Bearer ${config.blob.token}`,
-      'x-content-type': 'audio/mpeg',
-      'x-add-random-suffix': '1',
-      'x-api-version': '7',
-    },
-    timeout: 20000,
+  const result = await put('briefs/market-brief.mp3', bytes, {
+    access: 'public',
+    token: config.blob.token,
+    contentType: 'audio/mpeg',
+    addRandomSuffix: false,
+    allowOverwrite: true,
   });
-
-  const hostedUrl = resp.data?.url;
-  if (typeof hostedUrl !== 'string' || hostedUrl.length === 0) {
-    throw new Error('Vercel Blob upload returned no url');
-  }
-  return hostedUrl;
+  return result.url;
 }

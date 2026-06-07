@@ -85,7 +85,6 @@ export const config = {
 
   blob: {
     token: process.env.BLOB_READ_WRITE_TOKEN ?? '',
-    baseUrl: process.env.BLOB_API_BASE_URL ?? 'https://blob.vercel-storage.com',
   },
 
   cache: {

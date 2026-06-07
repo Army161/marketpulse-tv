@@ -32,6 +32,8 @@
             <FearGreedGauge id="gauge" translation="[1060,190]" />
             <Label text="LATEST HEADLINES" color="0x94A3B8FF" font="font:MediumBoldSystemFont" translation="[1060,470]" />
             <Group id="teaser" translation="[1060,522]" />
+            <!-- AI Audio Anchor entry point. RIGHT from the sidebar focuses it; OK opens the brief. -->
+            <Button id="briefBtn" text="▶  Daily Brief" translation="[330,800]" minWidth="380" height="72" />
         </Group>
 
         <!-- ===== PAGE: CRYPTO ===== -->
@@ -86,5 +88,8 @@
 
         <!-- ===== DETAIL OVERLAY ===== -->
         <DetailOverlay id="overlay" />
+
+        <!-- ===== AI MARKET BRIEF OVERLAY ===== -->
+        <BriefOverlay id="briefOverlay" />
     </children>
 </component>

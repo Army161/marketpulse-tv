@@ -177,6 +177,17 @@ After the nav bug is fixed and user-verified:
 
 This is the big one — user has Google Cloud TTS + HeyGen accounts ready.
 
+> **STATUS 2026-06-07 — Phase 3a backend + Roku UI BUILT (build 00011), TTS gated.**
+> Done: `/api/brief` (Gemini script + deterministic fallback, verified live);
+> `adapters/tts.ts` (Google TTS → Vercel Blob via `@vercel/blob`, gated by
+> `hasTtsCreds()`); Roku "▶ Daily Brief" Button on Home + `BriefOverlay`
+> (script reader + `Audio` node); DataFetcher `brief` field. Committed locally
+> (NOT pushed, per user). **TO TURN ON (user-only):**
+> 1. Deploy backend to Vercel so `/api/brief` is live — needs `VERCEL_TOKEN`.
+> 2. Set `GOOGLE_TTS_API_KEY` + `BLOB_READ_WRITE_TOKEN` in `.env` AND Vercel env.
+> 3. Power on Roku + sideload build 00011 (dist ready) + verify the button on TV.
+> After 1+2, `audioUrl` flips from null to a real MP3 automatically.
+
 ### Phase 3a: AI Audio Anchor (Google TTS)
 1. Backend new route `services/api/src/routes/brief.ts`:
    - Compose a 3-paragraph market brief script from live data:

@@ -41,6 +41,14 @@ sub runFetch()
     end if
 
     m.top.lastUpdated = CurrentDateTimeString()
+
+    ' AI market brief (heavier on a server cache-miss; fetched last so it never
+    ' delays the market data or the "updated" status line). Server caches 30 min,
+    ' so most cycles return instantly.
+    brief = HttpGetJson(base + "/api/brief")
+    if brief <> invalid then
+        m.top.brief = brief
+    end if
 end sub
 
 function CurrentDateTimeString() as String

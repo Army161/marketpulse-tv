@@ -16,6 +16,7 @@
         <field id="articles" type="array" />
         <field id="sentiment" type="assocarray" />
         <field id="earnings" type="array" />
+        <field id="brief" type="assocarray" />
         <field id="lastUpdated" type="string" />
     </interface>
 </component>
