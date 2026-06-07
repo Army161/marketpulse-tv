@@ -74,11 +74,27 @@ export const config = {
     baseUrl: process.env.BENZINGA_BASE_URL ?? 'https://api.benzinga.com',
   },
 
+  // AI Audio Anchor (Phase 3a). Optional — the /api/brief endpoint serves a
+  // script-only brief (audioUrl: null) until both of these are set.
+  googleTts: {
+    apiKey: process.env.GOOGLE_TTS_API_KEY ?? '',
+    voice: process.env.TTS_VOICE ?? 'en-US-Neural2-D',
+    languageCode: process.env.TTS_LANGUAGE_CODE ?? 'en-US',
+    baseUrl: process.env.TTS_BASE_URL ?? 'https://texttospeech.googleapis.com/v1',
+  },
+
+  blob: {
+    token: process.env.BLOB_READ_WRITE_TOKEN ?? '',
+    baseUrl: process.env.BLOB_API_BASE_URL ?? 'https://blob.vercel-storage.com',
+  },
+
   cache: {
     stocksTtl: envInt('CACHE_TTL_STOCKS', 30),
     cryptoTtl: envInt('CACHE_TTL_CRYPTO', 30),
     newsTtl: envInt('CACHE_TTL_NEWS', 300),
     moversTtl: envInt('CACHE_TTL_MOVERS', 30),
+    // Brief is expensive (Gemini + TTS) — cache hard. 30 min default.
+    briefTtl: envInt('CACHE_TTL_BRIEF', 1800),
   },
 
   rateLimit: {
@@ -97,4 +113,12 @@ export function hasNewsAiCreds(): boolean {
 
 export function hasBenzinga(): boolean {
   return Boolean(config.benzinga.apiKey);
+}
+
+/**
+ * True only when BOTH the TTS provider and the blob host are configured.
+ * Gates audio synthesis so the brief endpoint degrades to script-only.
+ */
+export function hasTtsCreds(): boolean {
+  return Boolean(config.googleTts.apiKey && config.blob.token);
 }

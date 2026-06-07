@@ -162,6 +162,32 @@ export interface ApiErrorResponse {
   };
 }
 
+/* ---------- AI Audio Anchor (market brief) ---------- */
+
+/** How the brief script was produced. */
+export type BriefScriptSource = 'gemini' | 'fallback';
+
+/**
+ * A spoken market-brief segment for the AI anchor: the script plus its audio.
+ * `audioUrl`/`voice` are null until text-to-speech is wired (Phase 3a) — the
+ * script is always present so the feature degrades gracefully.
+ */
+export interface MarketBrief {
+  /** The ~3-paragraph spoken script (plain text, no markup). */
+  scriptText: string;
+  /** Public MP3 URL for playback, or null when audio is not yet available. */
+  audioUrl: string | null;
+  /** TTS voice id used (e.g. "en-US-Neural2-D"), or null when there is no audio. */
+  voice: string | null;
+  /** How the script was generated. */
+  source: BriefScriptSource;
+  /** ISO-8601 generation timestamp. */
+  generatedAt: string;
+}
+
+/** Response shape for `GET /api/brief`. */
+export type BriefResponse = MarketBrief;
+
 /* ---------- Subscription / entitlement ---------- */
 
 export type SubscriptionTier = 'free' | 'premium' | 'pro';
