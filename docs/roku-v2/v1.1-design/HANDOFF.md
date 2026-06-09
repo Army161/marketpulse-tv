@@ -1,4 +1,7 @@
-# MarketPulse TV — v1.1 "Cinematic" Design Handoff (for Cowork / Claude Design)
+# MarketPulse TV — v1.1 "Cinematic" Design Handoff (FOR CLAUDE-DESIGN)
+
+> **Owner:** this kit is for **Claude-design** (the design/UI agent) — NOT Cowork.
+> Claude-design owns the Roku visual build described here.
 
 > **You are picking up a working, shipped app and making it look spectacular —
 > WITHOUT changing how it works.** v1.0 (build 00010) is already submitted to the
@@ -56,7 +59,9 @@ redundant stubs — same coverage, less noise):
   `192.168.1.80`, check the BrightScript console (port 8085) is clean, and have the
   user eyeball it on the TV. BrighterScript passing ≠ done. (See `BUILD.md`.)
 - Bump `apps/roku/manifest` `build_version` before EVERY sideload.
-- Three collaborators share this repo (user, Claude Code, Cowork). Coordinate via git.
+- Multiple agents share this repo (user, Claude Code, Claude-design, Cowork).
+  **Claude-design owns this v1.1 visual work.** Coordinate via git; `git pull --rebase`
+  before, `git push` after. Work only on branch `v1.1-design`.
 
 ## What "done" looks like for v1.1
 All 8 sections still navigate perfectly (RIGHT/SELECT/BACK), chyron scrolls, console
