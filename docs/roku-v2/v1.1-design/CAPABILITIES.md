@@ -19,7 +19,7 @@ a session — if a tool isn't loaded, fetch it with **ToolSearch** by keyword fi
 | **Higgsfield `generate_video` (`seedance_2_0`, `kling3_0`)** | Cinematic looping **background motion** + anchor video | keep bg loops low-res per `ROKU.md` |
 | **Higgsfield `upscale_video` (Topaz)** | Upscale anchor video to 1080p/4K | for the foreground anchor segment |
 | **Higgsfield `models_explore` / `show_generations` / `job_display`** | Pick models, poll jobs, fetch results | poll pending image/video jobs |
-| **Canva (`generate-design`, `export-design`)** | Store/marketing collateral, promo art, channel poster | NOT for in-app Roku UI |
+| **Canva** (`generate-design`, `export-design`, etc.) | **Asset FINISHING + assembly** (owner's preferred stack with MJ): import MJ raws, composite overlays (corner-brackets/glow), resize to exact Roku slot dims, export PNG. Also store screenshots + channel poster. | The compose/resize step after MJ; Claude Code can drive it via MCP or owner assembles. |
 
 ## 🧩 Design systems / specs
 | Tool | Use it for |

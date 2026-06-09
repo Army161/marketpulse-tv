@@ -1,17 +1,20 @@
 # ASSETS.md — Asset pipeline & generation prompts
 
-## Pipeline (every asset)
-0. **Tool order: Midjourney FIRST** (owner's preference + best cinematic quality), then
-   `nano_banana_pro` only as fallback. Midjourney has no API — generate via the MJ web
-   app driven by Claude-in-Chrome, or owner-generated drop-in. Then upscale in MJ.
-1. **Generate** the asset (MJ → upscale → download the highest-res variant).
-2. (fallback path) `nano_banana_pro` → **poll** (`show_generations`/`job_display`).
-3. **Download** to `docs/roku-v2/v1.1-design/concepts/` (curl) — NOT under
-   `apps/roku/images/` (that dir gets packaged into the channel).
-4. **Bake to slot dimensions** (exact px below) with PIL or ffmpeg — Roku wants the
-   real target size, not an oversized image (memory/perf):
-   `python3 -c "from PIL import Image; Image.open('src.png').resize((1920,1080), Image.LANCZOS).save('bg_gradient_fhd.png')"`
-5. **Place** in `apps/roku/images/`, bump `manifest`, `package-roku.py`, sideload, verify on TV.
+## Pipeline (every asset) — **Midjourney → Canva → Roku**
+1. **Midjourney = raw imagery** (owner runs it; best cinematic quality). Generate from
+   `MIDJOURNEY-PROMPTS.md` → pick best of 4 → **Upscale** → download highest-res.
+   (`nano_banana_pro` is the fallback generator only if MJ is unavailable.)
+2. **Canva = finish + assemble** (owner's tool). Import the MJ raw, compose overlays
+   (gold corner-brackets, extra glow, vignette), set the canvas to the **exact slot
+   size** (e.g. 1920×1080), and **export PNG**. Canva also produces the **store
+   screenshots + channel poster**. Claude Code can drive Canva via its MCP, or the
+   owner assembles — decide per asset.
+   - *No-Canva fallback (Claude Code, PIL):*
+     `python3 -c "from PIL import Image; Image.open('src.png').resize((1920,1080), Image.LANCZOS).save('bg_gradient_fhd.png')"`
+3. **Hand finished PNGs to Claude Code** → placed in `apps/roku/images/` at exact slot
+   dims, palette tuned to match, `manifest` bumped, `package-roku.py`, sideload, verify
+   on the TV. (Keep working files in `docs/roku-v2/v1.1-design/concepts/`, NOT in
+   `apps/roku/images/` — that dir gets packaged into the channel.)
 
 ## Image slots (current → keep these exact dimensions)
 | File | Dimensions | Role |
