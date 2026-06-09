@@ -5,9 +5,16 @@ inventory and what each is genuinely good for. (MCP servers connect/disconnect d
 a session — if a tool isn't loaded, fetch it with **ToolSearch** by keyword first.)
 
 ## 🎨 Image / video generation (the cinematic asset engine)
-| Tool (MCP) | Use it for | Notes |
+> **PRIMARY = Midjourney.** The owner has Midjourney; it's best-in-class for cinematic
+> stills — use it FIRST for every hero/background/texture asset. It has **no API/MCP**,
+> so generate via the **Midjourney web app** (`midjourney.com/imagine`) driven by
+> **Claude-in-Chrome**, or have the owner generate + drop the PNGs in. Use
+> `nano_banana_pro` only as a fallback when MJ is unavailable. MJ prompts: `ASSETS.md`.
+
+| Tool | Use it for | Notes |
 |---|---|---|
-| **Higgsfield `generate_image` / `nano_banana_pro`** | 4K stills: hero backgrounds, textures, glass, glows, corner-brackets | "top quality, 4K, text/diagrams." Bake down to 1080p. **Primary asset tool.** |
+| **Midjourney** (web/Discord; no MCP) | **PRIMARY** — all cinematic stills | Best quality. Drive via Claude-in-Chrome or owner-generated. |
+| **Higgsfield `generate_image` / `nano_banana_pro`** | **Fallback** 4K stills | "top quality, 4K." Bake down to 1080p. |
 | **Higgsfield `generate_image` / `soul_2`, `soul_cast`** | AI anchor avatar stills / character identity | for Phase 3b anchor look |
 | **Higgsfield `generate_video` (`seedance_2_0`, `kling3_0`)** | Cinematic looping **background motion** + anchor video | keep bg loops low-res per `ROKU.md` |
 | **Higgsfield `upscale_video` (Topaz)** | Upscale anchor video to 1080p/4K | for the foreground anchor segment |

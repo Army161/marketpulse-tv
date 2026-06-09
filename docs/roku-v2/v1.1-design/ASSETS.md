@@ -1,8 +1,11 @@
 # ASSETS.md — Asset pipeline & generation prompts
 
 ## Pipeline (every asset)
-1. **Generate at 4K** with `nano_banana_pro` (or video with `generate_video`).
-2. **Poll** the job (`show_generations` / `job_display`) → get the result URL.
+0. **Tool order: Midjourney FIRST** (owner's preference + best cinematic quality), then
+   `nano_banana_pro` only as fallback. Midjourney has no API — generate via the MJ web
+   app driven by Claude-in-Chrome, or owner-generated drop-in. Then upscale in MJ.
+1. **Generate** the asset (MJ → upscale → download the highest-res variant).
+2. (fallback path) `nano_banana_pro` → **poll** (`show_generations`/`job_display`).
 3. **Download** to `docs/roku-v2/v1.1-design/concepts/` (curl) — NOT under
    `apps/roku/images/` (that dir gets packaged into the channel).
 4. **Bake to slot dimensions** (exact px below) with PIL or ffmpeg — Roku wants the
@@ -32,7 +35,18 @@
 | `corner_bracket.png` | ~600×400, transparent | Prompt C |
 | section glyphs (8) | ~48×48 each, gold | simple line icons: markets ▲, crypto ◆, stocks ▦, news ▤, calendar ▦, sentiment ◐, settings ⚙, upgrade ★ |
 
-### Prompt A — hero background (4K still) — ALREADY GENERATING
+### Prompt A — hero background — MIDJOURNEY (primary)
+**Midjourney v7 command:**
+```
+cinematic premium financial television background, ultra-dark near-black slate navy, warm golden volumetric light rays from upper center, faint translucent candlestick chart silhouettes in emerald green and rose red along the lower third, thin grid lines, soft bokeh light particles, dark vignette edges, generous dark negative space across upper-left and center for UI overlay, luxury fintech broadcast aesthetic, depth, ultra detailed --ar 16:9 --style raw --v 7 --stylize 250 --no text, logos, watermark, ui
+```
+Generate → pick best of the 4 → **Upscale** → download highest-res → bake → 1920×1080.
+Tip: `--style raw` keeps it controlled (good for a UI background); nudge `--stylize`
+50–400 for less/more artistic. Variations for subtlety: add `darker, more minimal,
+candles barely visible` if it competes with overlaid text.
+
+**Fallback (`nano_banana_pro`) prose prompt** — 2 concepts already generated this way
+in `concepts/`:
 > Cinematic premium financial-television background. Ultra-dark slate-navy near-black
 > (#070B12) base, subtle warm golden radial glow from upper-center, faint translucent
 > candlestick silhouettes (muted emerald/rose) along the lower third, thin grid lines,
