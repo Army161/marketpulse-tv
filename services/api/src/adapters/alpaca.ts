@@ -63,8 +63,11 @@ export async function fetchStockQuotes(symbols: string[] = DEFAULT_SYMBOLS): Pro
 }
 
 function mapSnapshot(symbol: string, snap: AlpacaSnapshotResponse[string] | undefined): Stock | null {
-  if (!snap?.latestTrade?.p) return null;
-  const price = snap.latestTrade.p;
+  if (!snap) return null;
+  // Use latestTrade when available (market hours); fall back to dailyBar close
+  // so the stocks screen stays populated on weekends and outside market hours.
+  const price = snap.latestTrade?.p ?? snap.dailyBar?.c ?? snap.prevDailyBar?.c;
+  if (!price) return null;
   const prevClose = snap.prevDailyBar?.c ?? snap.dailyBar?.c ?? price;
   const change = price - prevClose;
   const changePercent = prevClose ? (change / prevClose) * 100 : 0;

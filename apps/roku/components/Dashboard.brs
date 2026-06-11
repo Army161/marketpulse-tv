@@ -61,7 +61,7 @@ sub init()
     m.nav.observeField("selectedSection", "onSectionChange")
     m.cryptoList.observeField("selectedPayload", "onCryptoSelected")
     m.stocksList.observeField("selectedPayload", "onStockSelected")
-    if m.briefBtn <> invalid then m.briefBtn.observeField("buttonSelected", "onBriefPressed")
+    ' briefBtn is now a styled Group (not a native Button) — focus + OK handled in onKeyEvent
 
     startFetch()
     startTimers()
@@ -280,14 +280,21 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     ' RIGHT from the Home sidebar moves focus onto the Daily Brief button.
     if key = "right" and m.currentSection = "Home" and not m.inContent and not m.overlayOpen and not m.briefOpen
         if m.briefBtn <> invalid
-            m.briefBtn.setFocus(true)
+            setBriefBtnFocus(true)
             m.inContent = true
             return true
         end if
     end if
 
+    ' OK on the focused Daily Brief button opens the overlay.
+    if key = "ok" and m.inContent and m.currentSection = "Home" and not m.overlayOpen and not m.briefOpen
+        onBriefPressed()
+        return true
+    end if
+
     ' LEFT from a content list (or the brief button) returns to the sidebar.
     if key = "left" and m.inContent and not m.overlayOpen and not m.briefOpen
+        setBriefBtnFocus(false)
         m.nav.navFocus = true
         m.inContent = false
         return true
@@ -295,6 +302,20 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
 
     return false
 end function
+
+' Highlight/unhighlight the custom styled brief button on focus change.
+sub setBriefBtnFocus(focused as Boolean)
+    if m.briefBtn = invalid then return
+    bg = m.briefBtn.findNode("briefBtnBg")
+    lbl = m.briefBtn.findNode("briefBtnLabel")
+    if focused
+        if bg <> invalid then bg.color = "0xF7C94855"   ' brighter gold tint
+        if lbl <> invalid then lbl.color = "0xFFFFFFFF"  ' white text when focused
+    else
+        if bg <> invalid then bg.color = "0xF7C94822"   ' dim tint
+        if lbl <> invalid then lbl.color = "0xF7C948FF"  ' gold text when unfocused
+    end if
+end sub
 
 sub refocusContent()
     if m.currentSection = "Crypto" and m.cryptoList <> invalid
@@ -321,7 +342,7 @@ sub buildSettings()
         ["News", "NewsAPI + Gemini AI summaries"],
         ["Sentiment", "Alternative.me Fear & Greed"],
         ["Theme", "MarketPulse Dark — Glass"],
-        ["Version", "1.0  (build 00011)"],
+        ["Version", "1.0  (build 00012)"],
         ["Privacy", "marketpulse-tv.vercel.app/privacy"]
     ]
     y = 0

@@ -33,7 +33,16 @@
             <Label text="LATEST HEADLINES" color="0x94A3B8FF" font="font:MediumBoldSystemFont" translation="[1060,470]" />
             <Group id="teaser" translation="[1060,522]" />
             <!-- AI Audio Anchor entry point. RIGHT from the sidebar focuses it; OK opens the brief. -->
-            <Button id="briefBtn" text="▶  Daily Brief" translation="[330,800]" minWidth="380" height="72" />
+            <!-- Custom styled button — avoids the Roku native Button checkbox appearance. -->
+            <Group id="briefBtn" translation="[330,800]">
+                <Rectangle id="briefBtnBg" color="0xF7C94822" width="320" height="60" />
+                <Rectangle id="briefBtnBorder" color="0xF7C948FF" width="320" height="2" translation="[0,0]" />
+                <Rectangle id="briefBtnBorderB" color="0xF7C948FF" width="320" height="2" translation="[0,58]" />
+                <Rectangle id="briefBtnBorderL" color="0xF7C948FF" width="2" height="60" translation="[0,0]" />
+                <Rectangle id="briefBtnBorderR" color="0xF7C948FF" width="2" height="60" translation="[318,0]" />
+                <Label id="briefBtnLabel" text="▶  Daily Brief" color="0xF7C948FF"
+                       font="font:MediumBoldSystemFont" translation="[24,14]" />
+            </Group>
         </Group>
 
         <!-- ===== PAGE: CRYPTO ===== -->
