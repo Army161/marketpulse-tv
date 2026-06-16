@@ -147,13 +147,15 @@ sub onArticles()
         if count >= 4 then exit for
         lbl = m.teaser.createChild("Label")
         lbl.text = "•  " + a.headline
-        lbl.font = "font:SmallSystemFont"
-        lbl.color = m.theme.colors.textMuted
+        lbl.font = "font:MediumSystemFont"
+        lbl.color = "0xE2E8F0FF"   ' bright near-white for contrast over the hero glow
         lbl.width = 780
         lbl.maxLines = 2
         lbl.wrap = true
         lbl.translation = [0, y]
-        y = y + 80
+        ' 104px step clears a 2-line MediumSystemFont headline without colliding
+        ' with the next bullet (was 80, which overlapped after the font bump).
+        y = y + 104
         count = count + 1
     end for
 end sub
@@ -342,7 +344,7 @@ sub buildSettings()
         ["News", "NewsAPI + Gemini AI summaries"],
         ["Sentiment", "Alternative.me Fear & Greed"],
         ["Theme", "MarketPulse Dark — Glass"],
-        ["Version", "1.0  (build 00012)"],
+        ["Version", "1.0  (build 00016)"],
         ["Privacy", "marketpulse-tv.vercel.app/privacy"]
     ]
     y = 0

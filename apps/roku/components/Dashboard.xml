@@ -7,6 +7,12 @@
     <children>
         <Poster id="bg" uri="pkg:/images/bg_gradient_fhd.png" width="1920" height="1080" />
 
+        <!-- Content stage: a translucent scrim over the content band (right of the nav,
+             below the header divider) that tames the hero image's bright upper-center
+             glow so headlines, the gauge, and body text stay legible on every page.
+             Header + nav keep the full cinematic background. -->
+        <Rectangle id="contentScrim" color="0x0A0E14A6" width="1620" height="810" translation="[300,150]" />
+
         <!-- ===== HEADER ===== -->
         <Label id="logo" text="MARKETPULSE" color="0xF7C948FF"
                font="font:LargeBoldSystemFont" translation="[330,40]" />

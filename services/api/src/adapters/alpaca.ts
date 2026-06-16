@@ -1,7 +1,6 @@
 import axios from 'axios';
 import type { Stock } from '@marketpulse/shared';
 import { config, hasAlpacaCreds } from '../config';
-import { Errors } from '../lib/errors';
 import { logger } from '../lib/logger';
 import { MOCK_STOCKS } from './mockData';
 
@@ -57,8 +56,11 @@ export async function fetchStockQuotes(symbols: string[] = DEFAULT_SYMBOLS): Pro
       .map((symbol) => mapSnapshot(symbol, resp.data[symbol]))
       .filter((s): s is Stock => s !== null);
   } catch (err) {
-    logger.error('Alpaca fetch failed', { err: String(err) });
-    throw Errors.upstream('Alpaca');
+    // Graceful degradation: a 401 (expired/invalid keys) or any upstream failure
+    // returns mock data instead of an empty UI. Better to show illustrative prices
+    // than empty Gainers/Losers panels on Home and a blank Stocks screen.
+    logger.error('Alpaca fetch failed — returning mock stocks', { err: String(err) });
+    return MOCK_STOCKS.filter((s) => symbols.includes(s.symbol));
   }
 }
 

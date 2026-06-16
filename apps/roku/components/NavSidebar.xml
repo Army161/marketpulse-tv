@@ -12,11 +12,16 @@
     <children>
         <Rectangle id="sidebarBg" color="0x0B1320E6" width="300" height="1080" />
         <Rectangle id="rightEdge" color="0x1E293BFF" width="2" height="1080" translation="[298,0]" />
+        <!-- floatingFocus keeps all 8 rows stationary and floats the highlight to
+             the focused item. The default (fixedFocusWrap) pins focus to a slot and
+             scrolls content under it, which made the glass pill drift out of line
+             with the labels as you moved up/down. -->
         <MarkupList id="list"
                     itemComponentName="NavItem"
                     itemSize="[300,84]"
                     numRows="8"
                     translation="[0,170]"
+                    vertFocusAnimationStyle="floatingFocus"
                     drawFocusFeedback="false" />
     </children>
 </component>
